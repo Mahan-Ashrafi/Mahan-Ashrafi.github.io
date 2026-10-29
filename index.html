@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mahan Ashrafi | Game Developer</title>
-<meta name="description" content="Hi, I'm Mahan Ashrafi, a game developer from Tehran. Roguelikes, multiplayer games and game jam entries in Godot and Unity, plus a tiny game starring my panda Timothy.">
+<meta name="description" content="Hi! I'm Mahan, I make games. Big ones with a team, small ones in a week, and a tiny one starring my sleepy panda Timothy.">
 <meta property="og:title" content="Mahan Ashrafi | Game Developer">
 <meta property="og:description" content="Roguelikes, multiplayer games and game jam entries in Godot and Unity.">
 <meta property="og:image" content="Images/Timothy.png">
-<link rel="icon" href="Images/TimothyFace.png" type="image/png">
+<link rel="icon" href="Images/Pfp.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -61,6 +61,7 @@
 
   .wrap { max-width: 66rem; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 2; }
   .ic { width: 1.15em; height: 1.15em; fill: currentColor; flex: none; shape-rendering: crispEdges; }
+  .ic-img { width: 1.15em; height: 1.15em; object-fit: contain; flex: none; image-rendering: pixelated; }
 
   #sky, #fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
   #sky { z-index: 0; }
@@ -80,7 +81,7 @@
   }
   .bar { display: flex; align-items: center; gap: 0.75rem 1.25rem; padding-top: 0.7rem; padding-bottom: 0.7rem; flex-wrap: wrap; }
   .brand { display: flex; align-items: center; gap: 0.8rem; color: var(--white); text-decoration: none; margin-right: auto; }
-  .avatar { width: 2.75rem; height: 2.75rem; background: var(--sky); display: block; margin: var(--px); }
+  .avatar { width: 2.75rem; height: 2.75rem; background: var(--sky); display: block; margin: var(--px); image-rendering: pixelated; }
   .brand span { font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; font-size: 1.25rem; }
   .nav { order: 2; }
   .nav ul { display: flex; gap: 0.35rem; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
@@ -94,7 +95,7 @@
     display: grid; place-items: center; width: 2.6rem; height: 2.6rem; margin: var(--px);
     background: var(--slate); color: var(--white);
   }
-  .icon-btn .ic { width: 1.4rem; height: 1.4rem; }
+  .icon-btn .ic, .icon-btn .ic-img { width: 1.4rem; height: 1.4rem; }
   .icon-btn:hover { background: var(--blush); color: var(--ink); }
   @media (max-width: 52rem) {
     .nav { order: 4; flex-basis: 100%; }
@@ -156,7 +157,7 @@
 
   /* Sections and dividers */
   section { padding: 2.5rem 0; scroll-margin-top: 6rem; }
-  .divider { height: 36px; margin: 0.5rem 0; background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27192%27%20height%3D%2736%27%20viewBox%3D%270%200%20192%2036%27%20shape-rendering%3D%27crispEdges%27%3E%3Cpath%20fill%3D%27%23FFFFFF%27%20transform%3D%27translate%2883%207%29%20scale%282%29%27%20d%3D%27M2%200h2v1h-2zM9%200h2v1h-2zM1%201h4v1h-4zM8%201h4v1h-4zM1%202h11v1h-11zM0%203h13v1h-13zM0%204h3v1h-3zM5%204h3v1h-3zM10%204h3v1h-3zM0%205h3v1h-3zM5%205h3v1h-3zM10%205h3v1h-3zM0%206h13v1h-13zM0%207h6v1h-6zM7%207h6v1h-6zM1%208h11v1h-11zM2%209h9v1h-9zM4%2010h5v1h-5z%27%2F%3E%3Cpath%20fill%3D%27%238FD0FF%27%20transform%3D%27translate%2838%2011%29%20scale%282%29%27%20d%3D%27M3%200h1v1h-1zM3%201h1v1h-1zM3%202h1v1h-1zM0%203h7v1h-7zM3%204h1v1h-1zM3%205h1v1h-1zM3%206h1v1h-1z%27%2F%3E%3Cpath%20fill%3D%27%238FD0FF%27%20transform%3D%27translate%28140%2011%29%20scale%282%29%27%20d%3D%27M3%200h1v1h-1zM3%201h1v1h-1zM3%202h1v1h-1zM0%203h7v1h-7zM3%204h1v1h-1zM3%205h1v1h-1zM3%206h1v1h-1z%27%2F%3E%3Crect%20x%3D%2712%27%20y%3D%2716%27%20width%3D%274%27%20height%3D%274%27%20fill%3D%27%238FD0FF%27%2F%3E%3Crect%20x%3D%27172%27%20y%3D%2716%27%20width%3D%274%27%20height%3D%274%27%20fill%3D%27%238FD0FF%27%2F%3E%3Crect%20x%3D%2764%27%20y%3D%2726%27%20width%3D%274%27%20height%3D%274%27%20fill%3D%27%23FF9DBB%27%2F%3E%3Crect%20x%3D%27124%27%20y%3D%276%27%20width%3D%274%27%20height%3D%274%27%20fill%3D%27%23FF9DBB%27%2F%3E%3C%2Fsvg%3E") center / auto 36px repeat-x; opacity: 0.9; }
+  .divider { height: 4px; margin: 0.75rem 0; background: repeating-linear-gradient(90deg, var(--slate) 0 8px, transparent 8px 16px); opacity: 0.7; }
   h2 {
     font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; font-size: 1.9rem;
     margin: 0 0 0.4rem; text-shadow: 3px 3px 0 var(--royal);
@@ -194,8 +195,15 @@
   .more-list li { display: flex; align-items: center; gap: 1rem; padding: 0.7rem 0; border-bottom: var(--px) dotted var(--slate); flex-wrap: wrap; }
   .more-list li:last-child { border-bottom: 0; }
   .more-list .t { flex: 1 1 14rem; }
+  .tile { width: 3.5rem; height: 3.5rem; flex: none; display: grid; place-items: center; overflow: hidden; font-family: "Silkscreen", monospace; font-weight: 700; font-size: 1.6rem; color: var(--ink); background: var(--sky); box-shadow: var(--outline); margin: var(--px); }
+  .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .more-list li:nth-child(2) .tile { background: var(--blush); }
+  .more-list li:nth-child(3) .tile { background: var(--sky-light); }
+  .more-list li:nth-child(4) .tile { background: var(--royal); color: var(--white); }
+  .more-list li:nth-child(5) .tile { background: var(--white); }
+  .more-list li:nth-child(6) .tile { background: var(--slate); color: var(--white); }
   .more-list strong { display: block; font-size: 1.05rem; }
-  .more-list span { color: var(--text-soft); font-size: 0.95rem; }
+  .more-list .t span { color: var(--text-soft); font-size: 0.95rem; }
 
   /* Mini game */
   .arcade { background: var(--slate-dark); margin: var(--px); padding: 1rem; max-width: 50rem; box-shadow: var(--outline); }
@@ -230,9 +238,9 @@
   .about { display: grid; gap: 2rem; grid-template-columns: 1fr; align-items: center; }
   @media (min-width: 52rem) { .about { grid-template-columns: 1.4fr 0.6fr; } }
   .about p { margin: 0 0 1rem; max-width: 38rem; }
-  .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0 0 1.5rem; }
-  .chips li { background: var(--royal); padding: 0.1rem 0.8rem; margin: var(--px); font-weight: 700; box-shadow: var(--outline); }
-  .about .sticker { justify-self: center; width: min(15rem, 60vw); height: auto; }
+  .about figure { margin: 0; justify-self: center; width: min(16rem, 62vw); text-align: center; }
+  .about figure img { display: block; width: 100%; height: auto; image-rendering: pixelated; box-shadow: var(--outline); }
+  .about figcaption { margin-top: 1rem; color: var(--text-soft); font-size: 0.95rem; }
   .btn.contact { background: var(--white); }
   .btn.contact:hover { background: var(--blush); }
 
@@ -240,6 +248,9 @@
   footer p { margin: 0 0 0.4rem; }
   footer .heart { color: var(--blush); vertical-align: -0.2em; }
   footer small { color: var(--text-soft); opacity: 0.8; }
+  .foot-logo { display: inline-block; margin-bottom: 0.9rem; }
+  .foot-logo img { display: block; width: 7.5rem; height: auto; image-rendering: pixelated; opacity: 0.9; }
+  .foot-logo:hover img { opacity: 1; }
 </style>
 </head>
 <body>
@@ -250,7 +261,7 @@
 <header class="top">
   <div class="wrap bar">
     <a class="brand" href="#top" aria-label="Mahan Ashrafi, back to top">
-      <img class="avatar px" src="Images/TimothyFace.png" alt="" width="44" height="44">
+      <img class="avatar px" src="Images/Pfp.png" alt="" width="44" height="44">
       <span>Mahan Ashrafi</span>
     </a>
     <nav class="nav" aria-label="Page sections">
@@ -262,10 +273,10 @@
       </ul>
     </nav>
     <div class="social">
-      <a class="icon-btn" href="https://t.me/mahixm" aria-label="Telegram" title="Telegram"><svg class="ic"><use href="#i-telegram"/></svg></a>
-      <a class="icon-btn" href="https://lazypandastudio.itch.io" aria-label="itch.io" title="itch.io"><svg class="ic"><use href="#i-itch"/></svg></a>
-      <a class="icon-btn" href="https://github.com/Mahan-Ashrafi" aria-label="GitHub" title="GitHub"><svg class="ic"><use href="#i-github"/></svg></a>
-      <a class="icon-btn" href="https://www.linkedin.com/in/mahanashrafi/" aria-label="LinkedIn" title="LinkedIn"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+      <a class="icon-btn" href="https://t.me/mahixm" aria-label="Telegram" title="Telegram"><svg class="ic" data-logo="Telegram"><use href="#i-telegram"/></svg></a>
+      <a class="icon-btn" href="https://lazypandastudio.itch.io" aria-label="itch.io" title="itch.io"><svg class="ic" data-logo="Itch"><use href="#i-itch"/></svg></a>
+      <a class="icon-btn" href="https://github.com/Mahan-Ashrafi" aria-label="GitHub" title="GitHub"><svg class="ic" data-logo="GitHub"><use href="#i-github"/></svg></a>
+      <a class="icon-btn" href="https://www.linkedin.com/in/mahanashrafi/" aria-label="LinkedIn" title="LinkedIn"><svg class="ic" data-logo="LinkedIn"><use href="#i-linkedin"/></svg></a>
     </div>
   </div>
 </header>
@@ -274,11 +285,11 @@
   <main id="top">
     <div class="hero">
       <div>
-        <h1>Hi, I'm Mahan.</h1>
-        <p class="intro">I'm a game developer from Tehran. I make roguelikes, multiplayer games and game jam entries in Godot and Unity.</p>
-        <p class="status">Lead Game Designer at ShizaLab. Open to game development work.</p>
+        <h1>Hi! I'm Mahan.</h1>
+        <p class="intro">I make games. Big ones with a team, small ones in a week, and a few just for fun. Come in, look around, and play whatever catches your eye.</p>
+        <p class="status">Timothy is supervising. He's mostly asleep.</p>
         <div class="btns">
-          <a class="btn px" href="#games">See my games</a>
+          <a class="btn px" href="#games">Play something</a>
           <a class="btn alt px" href="#hi">Say hi</a>
         </div>
       </div>
@@ -295,7 +306,7 @@
     <div class="divider" aria-hidden="true"></div>
 
     <section id="games" aria-labelledby="games-h">
-      <h2 id="games-h">My games</h2>
+      <h2 id="games-h">Games</h2>
       <p class="lead">Some you can play right now. The rest are still in the oven.</p>
       <div class="games">
 
@@ -305,7 +316,7 @@
             <h3>Unstable</h3>
             <span class="badge live">Playable on itch.io</span>
             <p>A platformer I made in 7 days. It took 3rd place at Gamecraft 2025.</p>
-            <a class="btn play sm" href="https://lazypandastudio.itch.io/unstable"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+            <a class="btn play sm" href="https://lazypandastudio.itch.io/unstable"><svg class="ic" data-logo="Play"><use href="#i-play"/></svg>Play</a>
           </div>
         </article>
 
@@ -315,7 +326,7 @@
             <h3>Gloop</h3>
             <span class="badge live">Playable on itch.io</span>
             <p>A bullet hell roguelike about a sentient gel escaping a lab. Made with a team in 7 days for Gamecraft 2026.</p>
-            <a class="btn play sm" href="https://shizalab.itch.io/00p"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+            <a class="btn play sm" href="https://shizalab.itch.io/00p"><svg class="ic" data-logo="Play"><use href="#i-play"/></svg>Play</a>
           </div>
         </article>
 
@@ -364,30 +375,37 @@
       </div>
       <ul class="more-list" id="more" hidden>
         <li>
-          <div class="t"><strong>Star Bound</strong><span>Platformer from the Bugs Buzzy game jam, 6th place</span></div>
-          <a class="btn play sm" href="https://lazypandastudio.itch.io/starbound"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+          <span class="tile" data-game="StarBound" aria-hidden="true">S</span>
+          <div class="t"><strong>Star Bound</strong><span>Platformer, 6th place at the Bugs Buzzy game jam. Can you escape this planet?</span></div>
+          <a class="btn play sm" href="https://lazypandastudio.itch.io/starbound"><svg class="ic" data-logo="Play"><use href="#i-play"/></svg>Play</a>
         </li>
         <li>
-          <div class="t"><strong>Have Manners!</strong><span>Role-playing game from GMTK Game Jam 2026</span></div>
-          <a class="btn play sm" href="https://shizkamin.itch.io/hvm"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+          <span class="tile" data-game="HaveManners" aria-hidden="true">H</span>
+          <div class="t"><strong>Have Manners!</strong><span>Role-playing game in your browser, made at ShizaLab for GMTK 2026. Make a face that looks acceptable before it's too late.</span></div>
+          <a class="btn play sm" href="https://shizkamin.itch.io/hvm"><svg class="ic" data-logo="Play"><use href="#i-play"/></svg>Play</a>
         </li>
         <li>
-          <div class="t"><strong>Mous't Wanted</strong><span>Action game</span></div>
-          <a class="btn play sm" href="https://lazypandastudio.itch.io/moust-wanted"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+          <span class="tile" data-game="MoustWanted" aria-hidden="true">M</span>
+          <div class="t"><strong>Mous't Wanted</strong><span>Action game in your browser. Why is the whole army after me?</span></div>
+          <a class="btn play sm" href="https://lazypandastudio.itch.io/moust-wanted"><svg class="ic" data-logo="Play"><use href="#i-play"/></svg>Play</a>
         </li>
         <li>
-          <div class="t"><strong>Marty Party</strong><span>Fighting game</span></div>
-          <a class="btn play sm" href="https://lazypandastudio.itch.io/martyparty"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+          <span class="tile" data-game="MartyParty" aria-hidden="true">M</span>
+          <div class="t"><strong>Marty Party</strong><span>Fighting game in your browser.</span></div>
+          <a class="btn play sm" href="https://lazypandastudio.itch.io/martyparty"><svg class="ic" data-logo="Play"><use href="#i-play"/></svg>Play</a>
         </li>
         <li>
-          <div class="t"><strong>Cash Slash</strong><span>Browser game</span></div>
-          <a class="btn play sm" href="https://lazypandastudio.itch.io/cashslash"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+          <span class="tile" data-game="CashSlash" aria-hidden="true">C</span>
+          <div class="t"><strong>Cash Slash</strong><span>Slash the cash! Plays in your browser.</span></div>
+          <a class="btn play sm" href="https://lazypandastudio.itch.io/cashslash"><svg class="ic" data-logo="Play"><use href="#i-play"/></svg>Play</a>
         </li>
         <li>
-          <div class="t"><strong>Laughing Legacy</strong><span>A card game where a court clown tries to make the queen laugh</span></div>
-          <a class="btn plain sm" href="https://github.com/Mahan-Ashrafi/LaughingLegacy"><svg class="ic"><use href="#i-github"/></svg>Code</a>
+          <span class="tile" data-game="LaughingLegacy" aria-hidden="true">L</span>
+          <div class="t"><strong>Laughing Legacy</strong><span>A card game where a court clown tries to make the queen laugh.</span></div>
+          <a class="btn plain sm" href="https://github.com/Mahan-Ashrafi/LaughingLegacy"><svg class="ic" data-logo="GitHub"><use href="#i-github"/></svg>Code</a>
         </li>
       </ul>
+      <p class="lead" style="margin: 1.5rem 0 0;">That's everything on my <a href="https://lazypandastudio.itch.io">itch.io page</a>, plus the ones I made at ShizaLab.</p>
     </section>
 
     <div class="divider" aria-hidden="true"></div>
@@ -410,7 +428,7 @@
             <img id="ov-img" src="Images/Burn.png" alt="Timothy holding a gas can and a lit match" width="575" height="564">
             <h3 id="ov-title">Star catcher</h3>
             <p id="ov-text">Catch the panda stars and dodge the flames.</p>
-            <button class="btn" id="ov-btn" type="button"><svg class="ic"><use href="#i-play"/></svg><span id="ov-btn-text">Play</span></button>
+            <button class="btn" id="ov-btn" type="button"><svg class="ic" data-logo="Play"><use href="#i-play"/></svg><span id="ov-btn-text">Play</span></button>
           </div>
         </div>
         <p class="hint">Move with your mouse, your finger or the arrow keys.</p>
@@ -427,21 +445,21 @@
           <span class="rank">3rd place</span>
           <div class="what">
             <span><strong>Unstable</strong> at Gamecraft 2025 (AUT), 7 days.</span>
-            <a class="btn play sm" href="https://lazypandastudio.itch.io/unstable"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+            <a class="btn play sm" href="https://lazypandastudio.itch.io/unstable"><svg class="ic" data-logo="Play"><use href="#i-play"/></svg>Play</a>
           </div>
         </li>
         <li>
           <span class="rank">6th place</span>
           <div class="what">
             <span><strong>Star Bound</strong> at the Bugs Buzzy game jam (Sharif University of Technology), 10 days.</span>
-            <a class="btn play sm" href="https://lazypandastudio.itch.io/starbound"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+            <a class="btn play sm" href="https://lazypandastudio.itch.io/starbound"><svg class="ic" data-logo="Play"><use href="#i-play"/></svg>Play</a>
           </div>
         </li>
         <li>
           <span class="rank">About 40th</span>
           <div class="what">
             <span><strong>Have Manners!</strong> at GMTK Game Jam 2026.</span>
-            <a class="btn play sm" href="https://shizkamin.itch.io/hvm"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+            <a class="btn play sm" href="https://shizkamin.itch.io/hvm"><svg class="ic" data-logo="Play"><use href="#i-play"/></svg>Play</a>
           </div>
         </li>
       </ol>
@@ -450,22 +468,24 @@
     <div class="divider" aria-hidden="true"></div>
 
     <section id="hi" aria-labelledby="hi-h">
-      <h2 id="hi-h">About me</h2>
+      <h2 id="hi-h">A little about me</h2>
       <div class="about">
         <div>
-          <p>I'm Mahan, a game developer from Tehran. I'm the Lead Game Designer at ShizaLab, and I also run a small studio of my own called LazyPanda, where Timothy is in charge of naps.</p>
-          <p>I'm studying Computer Science at Payame Noor University and I enter a lot of game jams. I'm open to game development work, and I also take translation and graphic design jobs. I speak Persian and English.</p>
-          <ul class="chips" aria-label="Tools and skills">
-            <li>Godot</li><li>Unity</li><li>C++</li><li>JavaScript</li><li>Pixel art</li><li>Shaders</li>
-          </ul>
+          <p>Hi, I'm Mahan. I live in Tehran and I get to make games for a living. I make them with my friends at ShizaLab, on my own as LazyPanda, and in the wild seven to ten days of a game jam.</p>
+          <p>Every game starts with a small idea I can't stop thinking about. A gambling roguelike. A garden that grows a little more every day. A panda who just wants five more minutes.</p>
+          <p>If one of them made you smile, that's the best thing I could ask for.</p>
+          <p>Want to make something together, or just say hi? Message me. I'm open to game development work, and I also take translation and graphic design jobs.</p>
           <div class="btns">
-            <a class="btn contact" href="https://t.me/mahixm"><svg class="ic"><use href="#i-telegram"/></svg>Telegram</a>
-            <a class="btn contact" href="https://www.linkedin.com/in/mahanashrafi/"><svg class="ic"><use href="#i-linkedin"/></svg>LinkedIn</a>
-            <a class="btn contact" href="https://github.com/Mahan-Ashrafi"><svg class="ic"><use href="#i-github"/></svg>GitHub</a>
-            <a class="btn contact" href="https://lazypandastudio.itch.io"><svg class="ic"><use href="#i-itch"/></svg>itch.io</a>
+            <a class="btn contact" href="https://t.me/mahixm"><svg class="ic" data-logo="Telegram"><use href="#i-telegram"/></svg>Telegram</a>
+            <a class="btn contact" href="https://www.linkedin.com/in/mahanashrafi/"><svg class="ic" data-logo="LinkedIn"><use href="#i-linkedin"/></svg>LinkedIn</a>
+            <a class="btn contact" href="https://github.com/Mahan-Ashrafi"><svg class="ic" data-logo="GitHub"><use href="#i-github"/></svg>GitHub</a>
+            <a class="btn contact" href="https://lazypandastudio.itch.io"><svg class="ic" data-logo="Itch"><use href="#i-itch"/></svg>itch.io</a>
           </div>
         </div>
-        <img class="sticker" src="Images/Cute.png" alt="Timothy making a heart with his paws, surrounded by sparkles" width="492" height="513" loading="lazy">
+        <figure>
+          <img src="Images/TimothyAsleep.png" alt="Timothy the panda asleep in a yellow bed, wearing his blue striped nightcap" width="480" height="480" loading="lazy">
+          <figcaption>Timothy says goodnight.</figcaption>
+        </figure>
       </div>
     </section>
   </main>
@@ -473,23 +493,26 @@
   <div class="divider" aria-hidden="true"></div>
 
   <footer>
+    <a class="foot-logo" href="https://lazypandastudio.itch.io" aria-label="LazyPanda Studio on itch.io"><img src="Images/LogoWhite.png" alt="LazyPanda Studio" width="240" height="112"></a>
     <p>Made with <svg class="ic heart"><use href="#i-heart"/></svg> in Tehran by Mahan and a very sleepy panda.</p>
-    <p><small>Pixel art, panda stars and a tiny game. Plain HTML, CSS and JavaScript. &copy; 2026 Mahan Ashrafi.</small></p>
+    <p><small>Pixel art, a few stars and a tiny game. Plain HTML, CSS and JavaScript. &copy; 2026 Mahan Ashrafi.</small></p>
   </footer>
 </div>
 
 <script>
-/* Shared pixel art: the panda-shaped star (# = filled, . = empty) */
-const STAR_GRID = ["..##.....##..", ".####...####.", ".###########.", "#############", "###..###..###", "###..###..###", "#############", "######.######", ".###########.", "..#########..", "....#####...."];
-function spriteFrom(grid, color) {
+/* Shared pixel art: the panda-shaped star (W face, E ears, D eye patches, K nose) */
+const STAR_GRID = [".EEE.......EEE.", "EEEEE.....EEEEE", "EEEEE.....EEEEE", ".EEEWWWWWWWEEE.", ".WWWWWWWWWWWWW.", "WWWDDWWWWWDDWWW", "WWDDWDWWWDWDDWW", "WWDDDDWWWDDDDWW", "WWWDDWKKKWDDWWW", ".WWWWWWKWWWWWW.", "..WWWWWWWWWWW..", "....WWWWWWW...."];
+const PANDA_PALETTES = [
+  { W: "#FFFFFF", E: "#5B5E88", D: "#2B2D4A", K: "#0A0A12" },
+  { W: "#DCEBFF", E: "#5B5E88", D: "#2B2D4A", K: "#0A0A12" }
+];
+function spriteFrom(grid, pal) {
   const c = document.createElement("canvas");
   c.width = grid[0].length; c.height = grid.length;
   const x = c.getContext("2d");
-  x.fillStyle = color;
-  grid.forEach((row, y) => [...row].forEach((ch, i) => { if (ch === "#") x.fillRect(i, y, 1, 1); }));
+  grid.forEach((row, y) => [...row].forEach((ch, i) => { if (pal[ch]) { x.fillStyle = pal[ch]; x.fillRect(i, y, 1, 1); } }));
   return c;
 }
-const PANDA_STAR_COLORS = ["#FFFFFF", "#8FD0FF", "#FF9DBB"];
 </script>
 
 <script>
@@ -508,7 +531,7 @@ const PANDA_STAR_COLORS = ["#FFFFFF", "#8FD0FF", "#FF9DBB"];
   const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
   const COLORS = ["#249FDE", "#285CC4", "#8FD0FF", "#FF9DBB", "#FFFFFF"];
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  const pandaSprites = PANDA_STAR_COLORS.map(c => spriteFrom(STAR_GRID, c));
+  const pandaSprites = PANDA_PALETTES.map(p => spriteFrom(STAR_GRID, p));
 
   /* ---------- Star sky (dots, sparkles and panda stars) ---------- */
   const sky = document.getElementById("sky");
@@ -522,7 +545,7 @@ const PANDA_STAR_COLORS = ["#FFFFFF", "#8FD0FF", "#FF9DBB"];
   function makeStars() {
     const area = innerWidth * innerHeight;
     stars = [];
-    for (let i = 0, n = Math.round(area / 14000); i < n; i++) {
+    for (let i = 0, n = Math.round(area / 26000); i < n; i++) {
       stars.push({
         t: Math.random() < 0.2 ? "plus" : "dot",
         x: Math.floor(Math.random() * innerWidth / 4) * 4,
@@ -531,15 +554,12 @@ const PANDA_STAR_COLORS = ["#FFFFFF", "#8FD0FF", "#FF9DBB"];
         on: Math.random() < 0.8
       });
     }
-    // panda stars, with extra ones hugging the left and right edges
-    for (let i = 0, n = Math.max(7, Math.round(area / 80000)); i < n; i++) {
-      const edge = Math.random() < 0.6;
-      const x = edge
-        ? (Math.random() < 0.5 ? Math.random() * innerWidth * 0.12 : innerWidth * (0.88 + Math.random() * 0.1))
-        : Math.random() * innerWidth;
+    // just a few quiet panda stars, tucked toward the edges
+    for (let i = 0, n = innerWidth < 700 ? 2 : 4; i < n; i++) {
+      const x = i % 2 === 0 ? Math.random() * innerWidth * 0.08 : innerWidth * (0.9 + Math.random() * 0.06);
       stars.push({
-        t: "panda", x: Math.round(x / 2) * 2, y: Math.round(Math.random() * innerHeight / 2) * 2,
-        k: Math.floor(Math.random() * pandaSprites.length), z: Math.random() < 0.3 ? 3 : 2, on: true
+        t: "panda", x: Math.round(x / 2) * 2, y: Math.round((0.15 + Math.random() * 0.75) * innerHeight / 2) * 2,
+        k: Math.floor(Math.random() * pandaSprites.length), z: 2, on: true
       });
     }
   }
@@ -552,8 +572,8 @@ const PANDA_STAR_COLORS = ["#FFFFFF", "#8FD0FF", "#FF9DBB"];
     sctx.fillRect(0, 0, innerWidth, innerHeight);
     for (const st of stars) {
       if (st.t === "panda") {
-        sctx.globalAlpha = st.on ? 0.85 : 0.35;
-        sctx.drawImage(pandaSprites[st.k], st.x, st.y, 13 * st.z, 11 * st.z);
+        sctx.globalAlpha = st.on ? 0.6 : 0.35;
+        sctx.drawImage(pandaSprites[st.k], st.x, st.y, 15 * st.z, 12 * st.z);
         continue;
       }
       if (!st.on) continue;
@@ -602,13 +622,6 @@ const PANDA_STAR_COLORS = ["#FFFFFF", "#8FD0FF", "#FF9DBB"];
     }
     kick();
   }
-  function spawnStars(x, y) {
-    for (let i = 0; i < 2; i++) {
-      parts.push({ sp: true, k: Math.floor(Math.random() * pandaSprites.length), x, y,
-        vx: (Math.random() - 0.5) * 3, vy: -2 - Math.random() * 1.5, g: 0.06, life: 46, max: 46 });
-    }
-    kick();
-  }
   function tick() {
     fctx.clearRect(0, 0, innerWidth, innerHeight);
     fctx.imageSmoothingEnabled = false;
@@ -616,11 +629,6 @@ const PANDA_STAR_COLORS = ["#FFFFFF", "#8FD0FF", "#FF9DBB"];
     for (const p of parts) {
       p.vy += p.g; p.x += p.vx; p.y += p.vy; p.vx *= 0.98;
       const t = p.life / p.max;
-      if (p.sp) {
-        fctx.globalAlpha = t > 0.3 ? 1 : 0.5;
-        fctx.drawImage(pandaSprites[p.k], Math.round(p.x / 2) * 2 - 13, Math.round(p.y / 2) * 2 - 11, 26, 22);
-        continue;
-      }
       const size = t > 0.5 ? p.s : (t > 0.2 ? p.s - 2 : 2);
       fctx.globalAlpha = t > 0.2 ? 1 : 0.6;
       fctx.fillStyle = "#0A0A12";
@@ -635,7 +643,6 @@ const PANDA_STAR_COLORS = ["#FFFFFF", "#8FD0FF", "#FF9DBB"];
   if (!reduce) {
     addEventListener("pointerdown", e => {
       spawn(e.clientX, e.clientY, 12, 4, 0.18, 34, [4, 6]);
-      spawnStars(e.clientX, e.clientY);
     });
   }
 
@@ -710,6 +717,23 @@ const PANDA_STAR_COLORS = ["#FFFFFF", "#8FD0FF", "#FF9DBB"];
     }
   });
 
+  /* ---------- Your own logos and game pictures (optional) ---------- */
+  // Drop Images/Icons/Telegram.png, Itch.png, GitHub.png, LinkedIn.png or Play.png to replace the built-in icons.
+  // Drop Images/Games/StarBound.jpg (and so on) to put a picture on a game tile.
+  new Set([...document.querySelectorAll("svg[data-logo]")].map(n => n.dataset.logo)).forEach(name => {
+    const probe = new Image();
+    probe.onload = () => document.querySelectorAll(`svg[data-logo="${name}"]`).forEach(node => {
+      const img = new Image(); img.src = probe.src; img.alt = ""; img.className = "ic-img";
+      node.replaceWith(img);
+    });
+    probe.src = `Images/Icons/${name}.png`;
+  });
+  document.querySelectorAll("[data-game]").forEach(tile => {
+    const probe = new Image();
+    probe.onload = () => { const img = new Image(); img.src = probe.src; img.alt = ""; tile.textContent = ""; tile.appendChild(img); };
+    probe.src = `Images/Games/${tile.dataset.game}.jpg`;
+  });
+
   /* ---------- More games ---------- */
   const moreBtn = document.getElementById("more-btn");
   const moreList = document.getElementById("more");
@@ -740,7 +764,7 @@ const PANDA_STAR_COLORS = ["#FFFFFF", "#8FD0FF", "#FF9DBB"];
 
   // sprites
   const playerImg = new Image(); playerImg.src = "Images/TimothySprite.png";
-  const starSprite = spriteFrom(STAR_GRID, "#FFFFFF");
+  const starSprite = spriteFrom(STAR_GRID, PANDA_PALETTES[0]);
   const FLAME = [
     "...o...", "...oo..", "..ooo..", "..ooyo.", ".oooyoo",
     ".ooyyoo", "oooywyo", "oooywyo", ".ooyyo.", "..ooo.."
@@ -879,11 +903,11 @@ const PANDA_STAR_COLORS = ["#FFFFFF", "#8FD0FF", "#FF9DBB"];
     const px0 = pl.x - 10, px1 = pl.x + 10, py0 = GROUND - 24, py1 = GROUND;
     for (const it of items) {
       it.y += it.vy * dt;
-      const w = it.k === "star" ? 13 : 7, h = it.k === "star" ? 11 : 10;
+      const w = it.k === "star" ? 15 : 7, h = it.k === "star" ? 12 : 10;
       if (!it.dead && it.x < px1 && it.x + w > px0 && it.y < py1 && it.y + h > py0) {
         it.dead = true;
         if (it.k === "star") {
-          score++; burst(it.x + 6, it.y + 5, ["#FFFFFF", "#8FD0FF", "#FF9DBB"], 8);
+          score++; burst(it.x + 7, it.y + 6, ["#FFFFFF", "#8FD0FF", "#FF9DBB"], 8);
           beep(700 + Math.min(score, 20) * 20, 0.09, "square", 0.04, 300);
           hud();
         } else {
