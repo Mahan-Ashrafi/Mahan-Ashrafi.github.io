@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LazyPanda Studio | Games by Mahan Ashrafi</title>
-<meta name="description" content="LazyPanda Studio is the game hub of Mahan Ashrafi, a game developer in Tehran. Roguelikes, multiplayer games and game jam entries, guarded by Timothy the panda.">
-<meta property="og:title" content="LazyPanda Studio | Games by Mahan Ashrafi">
-<meta property="og:description" content="Roguelikes, multiplayer games and game jam entries, guarded by Timothy the panda.">
+<title>Mahan Ashrafi | Game Developer</title>
+<meta name="description" content="Hi, I'm Mahan Ashrafi, a game developer from Tehran. Roguelikes, multiplayer games and game jam entries in Godot and Unity, plus a tiny game starring my panda Timothy.">
+<meta property="og:title" content="Mahan Ashrafi | Game Developer">
+<meta property="og:description" content="Roguelikes, multiplayer games and game jam entries in Godot and Unity.">
 <meta property="og:image" content="Images/Timothy.png">
-<link rel="icon" href="Images/Timothy.png" type="image/png">
+<link rel="icon" href="Images/TimothyFace.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,97 +20,129 @@
     --royal: #285CC4;
     --sky: #249FDE;
     --sky-light: #8FD0FF;
-    --shoe: #0071BC;
     --slate: #464762;
     --slate-dark: #373949;
     --ink: #0A0A12;
     --blush: #FF9DBB;
-    --blush-dark: #7A3354;
     --white: #FFFFFF;
     --text-soft: #D3D8F2;
     --px: 4px;
-    color-scheme: dark;
-  }
-
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
-  body {
-    margin: 0;
-    background: var(--night);
-    color: var(--white);
-    font-family: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
-
-  /* Fine-pointer devices get the custom cursor (class added by script) */
-  html.has-cursor, html.has-cursor * { cursor: none !important; }
-
-  a { color: var(--sky-light); text-underline-offset: 3px; }
-  a:focus-visible, button:focus-visible {
-    outline: 4px solid var(--blush);
-    outline-offset: 4px;
-  }
-
-  .wrap { max-width: 66rem; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 2; }
-
-  /* Background layers */
-  #sky, #fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-  #sky { z-index: 0; }
-  #fx { z-index: 50; }
-
-  /* Pixel box: stepped corners drawn with box-shadow */
-  .px {
-    box-shadow:
+    --outline:
       0 calc(var(--px) * -1) 0 0 var(--ink),
       0 var(--px) 0 0 var(--ink),
       calc(var(--px) * -1) 0 0 0 var(--ink),
       var(--px) 0 0 0 var(--ink);
+    color-scheme: dark;
   }
 
-  /* Top bar */
-  .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 0; flex-wrap: wrap; }
-  .logo { font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; font-size: 1.35rem; color: var(--white); text-decoration: none; }
-  .nav { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scrollbar-color: var(--sky) var(--night); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  ::selection { background: var(--blush); color: var(--ink); }
+  ::-webkit-scrollbar { width: 16px; }
+  ::-webkit-scrollbar-track { background: var(--night); }
+  ::-webkit-scrollbar-thumb { background: var(--sky); border: 4px solid var(--ink); }
+
+  body {
+    margin: 0; background: var(--night); color: var(--white);
+    font-family: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 1.0625rem; line-height: 1.6; min-height: 100vh;
+  }
+  /* soft dark edges around the whole screen */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    box-shadow: inset 0 0 140px 20px rgba(5, 6, 22, 0.6);
+  }
+
+  html.has-cursor, html.has-cursor * { cursor: none !important; }
+
+  a { color: var(--sky-light); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible, canvas:focus-visible { outline: 4px solid var(--blush); outline-offset: 4px; }
+
+  .wrap { max-width: 66rem; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 2; }
+  .ic { width: 1.15em; height: 1.15em; fill: currentColor; flex: none; shape-rendering: crispEdges; }
+
+  #sky, #fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  #sky { z-index: 0; }
+  #fx { z-index: 50; }
+
+  .px { box-shadow: var(--outline); }
+
+  /* Header */
+  .top {
+    position: sticky; top: 0; z-index: 20; background: rgba(27, 33, 80, 0.96);
+    border-bottom: 4px solid var(--ink);
+  }
+  .top::after {
+    content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 8px;
+    background: repeating-linear-gradient(90deg, var(--sky) 0 16px, var(--royal) 16px 32px);
+    border-bottom: 4px solid var(--ink);
+  }
+  .bar { display: flex; align-items: center; gap: 0.75rem 1.25rem; padding-top: 0.7rem; padding-bottom: 0.7rem; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 0.8rem; color: var(--white); text-decoration: none; margin-right: auto; }
+  .avatar { width: 2.75rem; height: 2.75rem; background: var(--sky); display: block; margin: var(--px); }
+  .brand span { font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; font-size: 1.25rem; }
+  .nav { order: 2; }
+  .nav ul { display: flex; gap: 0.35rem; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
   .nav a {
-    display: inline-block; padding: 0.35rem 0.85rem; text-decoration: none; font-weight: 700;
-    color: var(--white); background: var(--slate); margin: var(--px);
+    display: inline-block; padding: 0.3rem 0.8rem; margin: var(--px); text-decoration: none; font-weight: 700;
+    color: var(--white); background: var(--slate);
   }
   .nav a:hover { background: var(--sky); color: var(--ink); }
+  .social { order: 3; display: flex; gap: 0.5rem; }
+  .icon-btn {
+    display: grid; place-items: center; width: 2.6rem; height: 2.6rem; margin: var(--px);
+    background: var(--slate); color: var(--white);
+  }
+  .icon-btn .ic { width: 1.4rem; height: 1.4rem; }
+  .icon-btn:hover { background: var(--blush); color: var(--ink); }
+  @media (max-width: 52rem) {
+    .nav { order: 4; flex-basis: 100%; }
+    .nav ul { margin-left: calc(var(--px) * -1); }
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.6rem; margin: var(--px); padding: 0.6rem 1.2rem;
+    text-decoration: none; border: 0; font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; font-size: 1.05rem;
+    background: var(--sky); color: var(--ink);
+    box-shadow: var(--outline), inset 0 -4px 0 rgba(10, 10, 18, 0.28), inset 0 4px 0 rgba(255, 255, 255, 0.35);
+  }
+  .btn:hover { background: var(--white); }
+  .btn:active { transform: translateY(4px); box-shadow: var(--outline), inset 0 4px 0 rgba(10, 10, 18, 0.2); }
+  .btn.alt { background: var(--blush); }
+  .btn.alt:hover { background: var(--white); }
+  .btn.sm { padding: 0.3rem 0.85rem; font-size: 0.9rem; }
+  .btn.play { background: var(--sky-light); }
+  .btn.play:hover { background: var(--white); }
+  .btn.plain { background: var(--slate); color: var(--white); }
+  .btn.plain:hover { background: var(--sky); color: var(--ink); }
+  .btn .chev { transition: transform 0.15s steps(2); }
+  .btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+  .btns { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 
   /* Hero */
-  .hero { display: grid; gap: 1.5rem; align-items: center; padding: 1.5rem 0 3.5rem; grid-template-columns: 1fr; }
-  @media (min-width: 52rem) { .hero { grid-template-columns: 1.1fr 0.9fr; padding-top: 2.5rem; } }
+  .hero { display: grid; gap: 1.5rem; align-items: center; padding: 2.5rem 0 2.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 52rem) { .hero { grid-template-columns: 1.1fr 0.9fr; padding-top: 3.5rem; } }
   h1 {
     font-family: "Silkscreen", "Courier New", monospace; font-weight: 700;
-    font-size: clamp(2.5rem, 8.5vw, 5rem); line-height: 1.02; margin: 0 0 1.25rem;
-    text-shadow: 4px 4px 0 var(--royal);
+    font-size: clamp(2.5rem, 8vw, 4.6rem); line-height: 1.05; margin: 0 0 1.25rem; text-shadow: 4px 4px 0 var(--royal);
   }
   .intro { font-size: 1.25rem; max-width: 34rem; margin: 0 0 0.6rem; }
-  .status { color: var(--text-soft); margin: 0 0 1.75rem; max-width: 34rem; }
-  .btns { display: flex; flex-wrap: wrap; gap: 0.9rem; }
-  .btn {
-    display: inline-block; margin: var(--px); padding: 0.65rem 1.25rem; text-decoration: none;
-    font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; font-size: 1.05rem;
-    background: var(--sky); color: var(--ink);
-  }
-  .btn.alt { background: var(--blush); }
-  .btn:hover { background: var(--white); }
+  .status { color: var(--text-soft); margin: 0 0 1.5rem; max-width: 34rem; }
 
-  /* Timothy */
-  .stage { position: relative; justify-self: center; width: min(22rem, 78vw); padding-top: 5.5rem; }
+  /* Timothy and his speech bubble */
+  .stage { position: relative; justify-self: center; width: min(22rem, 78vw); padding-top: 7.5rem; }
   .bubble {
-    position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%;
-    background: var(--white); color: var(--ink); padding: 0.75rem 1rem; margin: var(--px) 0; font-weight: 700; line-height: 1.35;
-    min-height: 4.1rem; display: flex; align-items: center;
+    position: absolute; top: 0; left: 0; right: 0; min-height: 5.25rem; display: flex; align-items: center;
+    padding: 0.3rem 0.5rem; color: #171729; font-weight: 700; line-height: 1.3;
+    border: solid transparent; border-width: 12px;
+    border-image: url("Images/BubbleFrame.png") 3 fill / 12px / 0 stretch;
+    image-rendering: pixelated;
   }
-  .bubble::after {
-    content: ""; position: absolute; left: 52%; bottom: -16px; width: 12px; height: 12px;
-    background: var(--white);
-    box-shadow: 0 4px 0 0 var(--white), 0 8px 0 0 var(--ink), 4px 4px 0 0 var(--ink), -4px 4px 0 0 var(--ink), 4px 0 0 0 var(--ink), -4px 0 0 0 var(--ink);
+  .bubble .tail {
+    position: absolute; left: 50%; bottom: -24px; width: 32px; height: 16px; margin-left: -16px;
+    background: url("Images/BubbleTail.png") center / 100% 100% no-repeat; image-rendering: pixelated;
   }
   .timothy {
     display: block; width: 100%; background: none; border: 0; padding: 0; margin: 0; font: inherit;
@@ -118,17 +150,13 @@
   }
   .timothy img { display: block; width: 100%; height: auto; animation: bob 2.6s steps(5) infinite; }
   @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-  .ground {
-    height: calc(var(--px) * 3); margin: 0 8%; background: var(--slate-dark);
-    box-shadow: 0 var(--px) 0 0 var(--ink);
-  }
-  .zzz {
-    position: absolute; font-family: "Silkscreen", monospace; font-weight: 700; color: var(--sky-light);
-    pointer-events: none; z-index: 5; text-shadow: 2px 2px 0 var(--ink);
-  }
+  @media (prefers-reduced-motion: reduce) { .timothy img { animation: none; } }
+  .ground { height: 12px; margin: 0 8%; background: var(--slate-dark); box-shadow: 0 var(--px) 0 0 var(--ink); }
+  .zzz { position: absolute; font-family: "Silkscreen", monospace; font-weight: 700; color: var(--sky-light); pointer-events: none; z-index: 5; text-shadow: 2px 2px 0 var(--ink); }
 
-  /* Sections */
-  section { padding: 2.5rem 0; }
+  /* Sections and dividers */
+  section { padding: 2.5rem 0; scroll-margin-top: 6rem; }
+  .divider { height: 36px; margin: 0.5rem 0; background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27192%27%20height%3D%2736%27%20viewBox%3D%270%200%20192%2036%27%20shape-rendering%3D%27crispEdges%27%3E%3Cpath%20fill%3D%27%23FFFFFF%27%20transform%3D%27translate%2883%207%29%20scale%282%29%27%20d%3D%27M2%200h2v1h-2zM9%200h2v1h-2zM1%201h4v1h-4zM8%201h4v1h-4zM1%202h11v1h-11zM0%203h13v1h-13zM0%204h3v1h-3zM5%204h3v1h-3zM10%204h3v1h-3zM0%205h3v1h-3zM5%205h3v1h-3zM10%205h3v1h-3zM0%206h13v1h-13zM0%207h6v1h-6zM7%207h6v1h-6zM1%208h11v1h-11zM2%209h9v1h-9zM4%2010h5v1h-5z%27%2F%3E%3Cpath%20fill%3D%27%238FD0FF%27%20transform%3D%27translate%2838%2011%29%20scale%282%29%27%20d%3D%27M3%200h1v1h-1zM3%201h1v1h-1zM3%202h1v1h-1zM0%203h7v1h-7zM3%204h1v1h-1zM3%205h1v1h-1zM3%206h1v1h-1z%27%2F%3E%3Cpath%20fill%3D%27%238FD0FF%27%20transform%3D%27translate%28140%2011%29%20scale%282%29%27%20d%3D%27M3%200h1v1h-1zM3%201h1v1h-1zM3%202h1v1h-1zM0%203h7v1h-7zM3%204h1v1h-1zM3%205h1v1h-1zM3%206h1v1h-1z%27%2F%3E%3Crect%20x%3D%2712%27%20y%3D%2716%27%20width%3D%274%27%20height%3D%274%27%20fill%3D%27%238FD0FF%27%2F%3E%3Crect%20x%3D%27172%27%20y%3D%2716%27%20width%3D%274%27%20height%3D%274%27%20fill%3D%27%238FD0FF%27%2F%3E%3Crect%20x%3D%2764%27%20y%3D%2726%27%20width%3D%274%27%20height%3D%274%27%20fill%3D%27%23FF9DBB%27%2F%3E%3Crect%20x%3D%27124%27%20y%3D%276%27%20width%3D%274%27%20height%3D%274%27%20fill%3D%27%23FF9DBB%27%2F%3E%3C%2Fsvg%3E") center / auto 36px repeat-x; opacity: 0.9; }
   h2 {
     font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; font-size: 1.9rem;
     margin: 0 0 0.4rem; text-shadow: 3px 3px 0 var(--royal);
@@ -140,80 +168,123 @@
   @media (min-width: 46rem) { .games { grid-template-columns: 1fr 1fr; } }
   @media (min-width: 66rem) { .games { grid-template-columns: 1fr 1fr 1fr; } }
   .card {
-    background: var(--slate); display: flex; flex-direction: column; margin: 0;
-    transition: transform 0.18s steps(3);
+    background: var(--slate); display: flex; flex-direction: column; margin: 0; transition: transform 0.18s steps(3);
+    box-shadow: var(--outline), inset 0 4px 0 rgba(255, 255, 255, 0.1);
   }
   .card:hover { transform: translateY(-8px); }
   .shot { position: relative; background: var(--slate-dark); border-bottom: var(--px) solid var(--ink); }
   .shot img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
   .shot::after {
     content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity 0.18s steps(2);
-    background: repeating-linear-gradient(to bottom, rgba(10,10,18,0.35) 0 2px, transparent 2px 4px);
+    background: repeating-linear-gradient(to bottom, rgba(10, 10, 18, 0.35) 0 2px, transparent 2px 4px);
   }
   .card:hover .shot::after { opacity: 1; }
-  .body { padding: 1rem 1.15rem 1.3rem; display: flex; flex-direction: column; flex: 1; }
+  .body { padding: 1rem 1.15rem 1.2rem; display: flex; flex-direction: column; flex: 1; }
   .card h3 { margin: 0 0 0.5rem; font-size: 1.25rem; line-height: 1.25; }
-  .badge {
-    align-self: flex-start; padding: 0.1rem 0.6rem; margin: 0 0 0.7rem; font-weight: 700; font-size: 0.85rem;
-    color: var(--ink); background: var(--blush);
-  }
+  .badge { align-self: flex-start; padding: 0.1rem 0.6rem; margin: 0 0 0.7rem; font-weight: 700; font-size: 0.85rem; color: var(--ink); background: var(--blush); }
   .badge.live { background: var(--sky-light); }
   .card p { margin: 0 0 0.9rem; color: var(--text-soft); }
-  .card .play { margin-top: auto; align-self: flex-start; font-weight: 700; }
+  .card .btn { margin-top: auto; align-self: flex-start; }
+
+  .more-wrap { margin-top: 1.5rem; display: flex; justify-content: center; }
+  .more-list { list-style: none; margin: 1.5rem var(--px) 0; padding: 0.4rem 1.25rem; background: var(--slate-dark); box-shadow: var(--outline); animation: pop 0.25s steps(4); }
+  .more-list[hidden] { display: none; }
+  @keyframes pop { from { transform: translateY(-12px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .more-list { animation: none; } }
+  .more-list li { display: flex; align-items: center; gap: 1rem; padding: 0.7rem 0; border-bottom: var(--px) dotted var(--slate); flex-wrap: wrap; }
+  .more-list li:last-child { border-bottom: 0; }
+  .more-list .t { flex: 1 1 14rem; }
+  .more-list strong { display: block; font-size: 1.05rem; }
+  .more-list span { color: var(--text-soft); font-size: 0.95rem; }
+
+  /* Mini game */
+  .arcade { background: var(--slate-dark); margin: var(--px); padding: 1rem; max-width: 50rem; box-shadow: var(--outline); }
+  .hud { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-bottom: 0.8rem; font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; }
+  .hud b { color: var(--sky-light); }
+  .hud .grow { margin-right: auto; display: flex; gap: 1.5rem; align-items: center; }
+  .hearts { display: inline-flex; gap: 0.25rem; color: var(--blush); }
+  .hearts .off { color: var(--slate); }
+  .screen { position: relative; border: 4px solid var(--ink); background: #10143a; }
+  #game { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; image-rendering: pixelated; touch-action: pan-y; }
+  .overlay {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.4rem; text-align: center; padding: 1rem; background: rgba(15, 18, 48, 0.86);
+  }
+  .overlay[hidden] { display: none; }
+  .overlay img { height: clamp(5rem, 22vw, 8rem); width: auto; }
+  .overlay h3 { font-family: "Silkscreen", "Courier New", monospace; font-size: 1.4rem; margin: 0.2rem 0 0; }
+  .overlay p { margin: 0 0 0.4rem; max-width: 26rem; color: var(--text-soft); font-size: 0.98rem; }
+  .hint { margin: 0.9rem 0 0; color: var(--text-soft); font-size: 0.95rem; }
 
   /* High scores */
-  .scores { background: var(--slate-dark); margin: var(--px); padding: 0.5rem 1.25rem; list-style: none; }
-  .scores li {
-    display: grid; gap: 0.1rem 1.5rem; padding: 1rem 0; border-bottom: var(--px) dotted var(--slate);
-  }
+  .scores { background: var(--slate-dark); margin: var(--px); padding: 0.5rem 1.25rem; list-style: none; box-shadow: var(--outline); }
+  .scores li { display: grid; gap: 0.3rem 1.5rem; padding: 1rem 0; border-bottom: var(--px) dotted var(--slate); }
   .scores li:last-child { border-bottom: 0; }
-  @media (min-width: 46rem) { .scores li { grid-template-columns: 9.5rem 1fr; align-items: baseline; } }
+  @media (min-width: 46rem) { .scores li { grid-template-columns: 9.5rem 1fr; align-items: center; } }
   .rank { font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; font-size: 1.3rem; color: var(--blush); }
-  .scores .what { color: var(--text-soft); }
+  .scores .what { color: var(--text-soft); display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; }
+  .scores .what > span { flex: 1 1 16rem; }
   .scores .what strong { color: var(--white); }
-  .more { margin: 1.5rem 0 0; color: var(--text-soft); }
 
-  /* Contact */
-  .player { background: var(--royal); margin: var(--px); padding: 1.5rem 1.5rem 1.75rem; }
-  .player p { margin: 0 0 1.25rem; max-width: 36rem; }
-  .player .btn { background: var(--white); }
-  .player .btn:hover { background: var(--blush); }
+  /* About */
+  .about { display: grid; gap: 2rem; grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 52rem) { .about { grid-template-columns: 1.4fr 0.6fr; } }
+  .about p { margin: 0 0 1rem; max-width: 38rem; }
+  .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0 0 1.5rem; }
+  .chips li { background: var(--royal); padding: 0.1rem 0.8rem; margin: var(--px); font-weight: 700; box-shadow: var(--outline); }
+  .about .sticker { justify-self: center; width: min(15rem, 60vw); height: auto; }
+  .btn.contact { background: var(--white); }
+  .btn.contact:hover { background: var(--blush); }
 
-  footer { padding: 2.5rem 0 3.5rem; color: var(--text-soft); }
+  footer { padding: 1.5rem 0 3.5rem; text-align: center; color: var(--text-soft); }
   footer p { margin: 0 0 0.4rem; }
+  footer .heart { color: var(--blush); vertical-align: -0.2em; }
+  footer small { color: var(--text-soft); opacity: 0.8; }
 </style>
 </head>
 <body>
-
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="i-play" viewBox="0 0 12 12"><path d="M1 0h2v1h-2zM1 1h4v1h-4zM1 2h6v1h-6zM1 3h8v1h-8zM1 4h10v1h-10zM1 5h10v1h-10zM1 6h10v1h-10zM1 7h10v1h-10zM1 8h8v1h-8zM1 9h6v1h-6zM1 10h4v1h-4zM1 11h2v1h-2z" shape-rendering="crispEdges"/></symbol><symbol id="i-heart" viewBox="0 0 11 11"><path d="M1 0h3v1h-3zM7 0h3v1h-3zM0 1h5v1h-5zM6 1h5v1h-5zM0 2h11v1h-11zM0 3h11v1h-11zM0 4h11v1h-11zM1 5h9v1h-9zM2 6h7v1h-7zM3 7h5v1h-5zM4 8h3v1h-3zM5 9h1v1h-1z" shape-rendering="crispEdges"/></symbol><symbol id="i-chevron" viewBox="0 0 10 10"><path d="M0 2h2v1h-2zM8 2h2v1h-2zM0 3h3v1h-3zM7 3h3v1h-3zM1 4h3v1h-3zM6 4h3v1h-3zM2 5h6v1h-6zM3 6h4v1h-4zM4 7h2v1h-2z" shape-rendering="crispEdges"/></symbol><symbol id="i-telegram" viewBox="0 0 16 16"><path d="M5 0h6v1h-6zM3 1h10v1h-10zM2 2h12v1h-12zM1 3h14v1h-14zM1 4h14v1h-14zM0 5h11v1h-11zM13 5h3v1h-3zM0 6h9v1h-9zM13 6h3v1h-3zM0 7h7v1h-7zM13 7h3v1h-3zM0 8h3v1h-3zM12 8h4v1h-4zM0 9h5v1h-5zM10 9h6v1h-6zM0 10h7v1h-7zM11 10h5v1h-5zM1 11h6v1h-6zM9 11h6v1h-6zM1 12h6v1h-6zM8 12h7v1h-7zM2 13h12v1h-12zM3 14h10v1h-10zM5 15h6v1h-6z" shape-rendering="crispEdges"/></symbol><symbol id="i-itch" viewBox="0 0 16 16"><path d="M3 2h10v1h-10zM2 3h12v1h-12zM0 4h16v1h-16zM0 5h2v1h-2zM3 5h3v1h-3zM7 5h2v1h-2zM10 5h3v1h-3zM14 5h2v1h-2zM2 6h12v1h-12zM2 7h2v1h-2zM6 7h4v1h-4zM12 7h2v1h-2zM2 8h2v1h-2zM6 8h4v1h-4zM12 8h2v1h-2zM2 9h12v1h-12zM2 10h2v1h-2zM5 10h6v1h-6zM12 10h2v1h-2zM2 11h3v1h-3zM11 11h3v1h-3zM2 12h12v1h-12z" shape-rendering="crispEdges"/></symbol><symbol id="i-github" viewBox="0 0 16 16"><path d="M5 0h6v1h-6zM3 1h10v1h-10zM2 2h12v1h-12zM1 3h14v1h-14zM1 4h4v1h-4zM6 4h4v1h-4zM11 4h4v1h-4zM0 5h5v1h-5zM7 5h2v1h-2zM11 5h5v1h-5zM0 6h5v1h-5zM11 6h5v1h-5zM0 7h4v1h-4zM6 7h1v1h-1zM9 7h1v1h-1zM12 7h4v1h-4zM0 8h4v1h-4zM12 8h4v1h-4zM0 9h5v1h-5zM11 9h5v1h-5zM0 10h6v1h-6zM10 10h6v1h-6zM1 11h14v1h-14zM1 12h14v1h-14zM2 13h12v1h-12zM3 14h10v1h-10zM5 15h6v1h-6z" shape-rendering="crispEdges"/></symbol><symbol id="i-linkedin" viewBox="0 0 16 16"><path d="M0 0h16v1h-16zM0 1h16v1h-16zM0 2h3v1h-3zM5 2h11v1h-11zM0 3h3v1h-3zM5 3h11v1h-11zM0 4h16v1h-16zM0 5h3v1h-3zM5 5h2v1h-2zM13 5h3v1h-3zM0 6h3v1h-3zM5 6h2v1h-2zM9 6h2v1h-2zM13 6h3v1h-3zM0 7h3v1h-3zM5 7h2v1h-2zM9 7h2v1h-2zM13 7h3v1h-3zM0 8h3v1h-3zM5 8h2v1h-2zM9 8h2v1h-2zM13 8h3v1h-3zM0 9h3v1h-3zM5 9h2v1h-2zM9 9h2v1h-2zM13 9h3v1h-3zM0 10h3v1h-3zM5 10h2v1h-2zM9 10h2v1h-2zM13 10h3v1h-3zM0 11h3v1h-3zM5 11h2v1h-2zM9 11h2v1h-2zM13 11h3v1h-3zM0 12h3v1h-3zM5 12h2v1h-2zM9 12h2v1h-2zM13 12h3v1h-3zM0 13h16v1h-16zM0 14h16v1h-16zM0 15h16v1h-16z" shape-rendering="crispEdges"/></symbol><symbol id="i-plus" viewBox="0 0 7 7"><path d="M3 0h1v1h-1zM3 1h1v1h-1zM3 2h1v1h-1zM0 3h7v1h-7zM3 4h1v1h-1zM3 5h1v1h-1zM3 6h1v1h-1z" shape-rendering="crispEdges"/></symbol></defs></svg>
 <canvas id="sky" aria-hidden="true"></canvas>
 <canvas id="fx" aria-hidden="true"></canvas>
 
-<div class="wrap">
-  <header class="bar">
-    <a class="logo" href="#top">LazyPanda</a>
-    <nav aria-label="Page sections">
-      <ul class="nav">
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Mahan Ashrafi, back to top">
+      <img class="avatar px" src="Images/TimothyFace.png" alt="" width="44" height="44">
+      <span>Mahan Ashrafi</span>
+    </a>
+    <nav class="nav" aria-label="Page sections">
+      <ul>
         <li><a href="#games">Games</a></li>
+        <li><a href="#play">Mini game</a></li>
         <li><a href="#scores">High scores</a></li>
-        <li><a href="#hi">Say hi</a></li>
+        <li><a href="#hi">About</a></li>
       </ul>
     </nav>
-  </header>
+    <div class="social">
+      <a class="icon-btn" href="https://t.me/mahixm" aria-label="Telegram" title="Telegram"><svg class="ic"><use href="#i-telegram"/></svg></a>
+      <a class="icon-btn" href="https://lazypandastudio.itch.io" aria-label="itch.io" title="itch.io"><svg class="ic"><use href="#i-itch"/></svg></a>
+      <a class="icon-btn" href="https://github.com/Mahan-Ashrafi" aria-label="GitHub" title="GitHub"><svg class="ic"><use href="#i-github"/></svg></a>
+      <a class="icon-btn" href="https://www.linkedin.com/in/mahanashrafi/" aria-label="LinkedIn" title="LinkedIn"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+    </div>
+  </div>
+</header>
 
+<div class="wrap">
   <main id="top">
     <div class="hero">
       <div>
-        <h1>LazyPanda Studio</h1>
-        <p class="intro">Games by Mahan Ashrafi, a game developer in Tehran. Roguelikes, multiplayer games and game jam entries in Godot and Unity.</p>
+        <h1>Hi, I'm Mahan.</h1>
+        <p class="intro">I'm a game developer from Tehran. I make roguelikes, multiplayer games and game jam entries in Godot and Unity.</p>
         <p class="status">Lead Game Designer at ShizaLab. Open to game development work.</p>
         <div class="btns">
-          <a class="btn px" href="#games">Pick a game</a>
+          <a class="btn px" href="#games">See my games</a>
           <a class="btn alt px" href="#hi">Say hi</a>
         </div>
       </div>
 
       <div class="stage">
-        <p class="bubble px" id="bubble" aria-live="polite">zzz... oh. hi. I'm Timothy.</p>
+        <div class="bubble" id="bubble" aria-live="polite"><span id="bubble-text">zzz... oh. hi. I'm Timothy.</span><i class="tail" aria-hidden="true"></i></div>
         <button class="timothy" id="timothy" type="button" aria-label="Poke Timothy the panda">
           <img src="Images/Timothy.png" alt="Timothy, a cartoon panda in a blue striped nightcap with big sparkly eyes" width="626" height="690">
         </button>
@@ -221,32 +292,34 @@
       </div>
     </div>
 
+    <div class="divider" aria-hidden="true"></div>
+
     <section id="games" aria-labelledby="games-h">
-      <h2 id="games-h">Pick a game</h2>
+      <h2 id="games-h">My games</h2>
       <p class="lead">Some you can play right now. The rest are still in the oven.</p>
       <div class="games">
 
-        <article class="card px">
+        <article class="card">
           <div class="shot"><img src="Images/Unstable.jpg" alt="A horse-headed character running past a burst of fire in front of a tall wooden barn" loading="lazy"></div>
           <div class="body">
             <h3>Unstable</h3>
             <span class="badge live">Playable on itch.io</span>
-            <p>A platformer made in 7 days. It took 3rd place at Gamecraft 2025.</p>
-            <a class="play" href="https://lazypandastudio.itch.io/unstable">Play Unstable</a>
+            <p>A platformer I made in 7 days. It took 3rd place at Gamecraft 2025.</p>
+            <a class="btn play sm" href="https://lazypandastudio.itch.io/unstable"><svg class="ic"><use href="#i-play"/></svg>Play</a>
           </div>
         </article>
 
-        <article class="card px">
+        <article class="card">
           <div class="shot"><img src="Images/Gloop.jpg" alt="A glowing orange gel blob in a lab covered in red splatter, seen from above" loading="lazy"></div>
           <div class="body">
             <h3>Gloop</h3>
             <span class="badge live">Playable on itch.io</span>
             <p>A bullet hell roguelike about a sentient gel escaping a lab. Made with a team in 7 days for Gamecraft 2026.</p>
-            <a class="play" href="https://shizalab.itch.io/00p">Play Gloop</a>
+            <a class="btn play sm" href="https://shizalab.itch.io/00p"><svg class="ic"><use href="#i-play"/></svg>Play</a>
           </div>
         </article>
 
-        <article class="card px">
+        <article class="card">
           <div class="shot"><img src="Images/Dolge.jpg" alt="Dolge shop screen: a dim table with chips, a die and a card for sale, and a shopkeeper in a red-star hat behind it" loading="lazy"></div>
           <div class="body">
             <h3>Dolge</h3>
@@ -255,7 +328,7 @@
           </div>
         </article>
 
-        <article class="card px">
+        <article class="card">
           <div class="shot"><img src="Images/MonsterOnTheMenu.jpg" alt="Three players with swords and backpacks standing on a hillside in Monster on the Menu!" loading="lazy"></div>
           <div class="body">
             <h3>Monster on the Menu!</h3>
@@ -264,7 +337,7 @@
           </div>
         </article>
 
-        <article class="card px">
+        <article class="card">
           <div class="shot"><img src="Images/LittleByLittle.jpg" alt="A pixel-art character fishing at a heart-shaped pond with a timing bar at the top of the screen" loading="lazy"></div>
           <div class="body">
             <h3>Little by Little</h3>
@@ -273,7 +346,7 @@
           </div>
         </article>
 
-        <article class="card px">
+        <article class="card">
           <div class="shot"><img src="Images/MashhadGame.jpg" alt="A cartoon Earth mascot in a green cap greeting players in a city street, next to the Mashhad municipality logo" loading="lazy"></div>
           <div class="body">
             <h3>Waste-sorting games</h3>
@@ -283,47 +356,141 @@
         </article>
 
       </div>
-      <p class="more">More games, including Mous't Wanted, Marty Party and Cash Slash, are on <a href="https://lazypandastudio.itch.io">the LazyPanda itch.io page</a>.</p>
+
+      <div class="more-wrap">
+        <button class="btn px" id="more-btn" type="button" aria-expanded="false" aria-controls="more">
+          <span id="more-label">More games</span><svg class="ic chev"><use href="#i-chevron"/></svg>
+        </button>
+      </div>
+      <ul class="more-list" id="more" hidden>
+        <li>
+          <div class="t"><strong>Star Bound</strong><span>Platformer from the Bugs Buzzy game jam, 6th place</span></div>
+          <a class="btn play sm" href="https://lazypandastudio.itch.io/starbound"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+        </li>
+        <li>
+          <div class="t"><strong>Have Manners!</strong><span>Role-playing game from GMTK Game Jam 2026</span></div>
+          <a class="btn play sm" href="https://shizkamin.itch.io/hvm"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+        </li>
+        <li>
+          <div class="t"><strong>Mous't Wanted</strong><span>Action game</span></div>
+          <a class="btn play sm" href="https://lazypandastudio.itch.io/moust-wanted"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+        </li>
+        <li>
+          <div class="t"><strong>Marty Party</strong><span>Fighting game</span></div>
+          <a class="btn play sm" href="https://lazypandastudio.itch.io/martyparty"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+        </li>
+        <li>
+          <div class="t"><strong>Cash Slash</strong><span>Browser game</span></div>
+          <a class="btn play sm" href="https://lazypandastudio.itch.io/cashslash"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+        </li>
+        <li>
+          <div class="t"><strong>Laughing Legacy</strong><span>A card game where a court clown tries to make the queen laugh</span></div>
+          <a class="btn plain sm" href="https://github.com/Mahan-Ashrafi/LaughingLegacy"><svg class="ic"><use href="#i-github"/></svg>Code</a>
+        </li>
+      </ul>
     </section>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <section id="play" aria-labelledby="play-h">
+      <h2 id="play-h">Catch the stars</h2>
+      <p class="lead">A tiny game by me and Timothy. Panda stars give points. Flames hurt. Timothy started the fire.</p>
+      <div class="arcade">
+        <div class="hud">
+          <div class="grow">
+            <span>Score <b id="score">0</b></span>
+            <span>Best <b id="best">0</b></span>
+          </div>
+          <span class="hearts" id="hearts" role="img" aria-label="3 lives left"></span>
+          <button class="btn plain sm" id="sound" type="button" aria-pressed="false">Sound off</button>
+        </div>
+        <div class="screen">
+          <canvas id="game" tabindex="0" aria-label="Catch the stars mini game. Move Timothy with the mouse, a finger or the arrow keys."></canvas>
+          <div class="overlay" id="overlay">
+            <img id="ov-img" src="Images/Burn.png" alt="Timothy holding a gas can and a lit match" width="575" height="564">
+            <h3 id="ov-title">Star catcher</h3>
+            <p id="ov-text">Catch the panda stars and dodge the flames.</p>
+            <button class="btn" id="ov-btn" type="button"><svg class="ic"><use href="#i-play"/></svg><span id="ov-btn-text">Play</span></button>
+          </div>
+        </div>
+        <p class="hint">Move with your mouse, your finger or the arrow keys.</p>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"></div>
 
     <section id="scores" aria-labelledby="scores-h">
       <h2 id="scores-h">High scores</h2>
       <p class="lead">Game jam results so far.</p>
-      <ol class="scores px">
+      <ol class="scores">
         <li>
           <span class="rank">3rd place</span>
-          <span class="what"><strong>Unstable</strong> at Gamecraft 2025 (AUT), 7 days. <a href="https://lazypandastudio.itch.io/unstable">Play it</a>.</span>
+          <div class="what">
+            <span><strong>Unstable</strong> at Gamecraft 2025 (AUT), 7 days.</span>
+            <a class="btn play sm" href="https://lazypandastudio.itch.io/unstable"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+          </div>
         </li>
         <li>
           <span class="rank">6th place</span>
-          <span class="what"><strong>Star Bound</strong> at the Bugs Buzzy game jam (Sharif University of Technology), 10 days. <a href="https://lazypandastudio.itch.io/starbound">Play it</a>.</span>
+          <div class="what">
+            <span><strong>Star Bound</strong> at the Bugs Buzzy game jam (Sharif University of Technology), 10 days.</span>
+            <a class="btn play sm" href="https://lazypandastudio.itch.io/starbound"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+          </div>
         </li>
         <li>
           <span class="rank">About 40th</span>
-          <span class="what"><strong>Have Manners!</strong> at GMTK Game Jam 2026. <a href="https://shizkamin.itch.io/hvm">Play it</a>.</span>
+          <div class="what">
+            <span><strong>Have Manners!</strong> at GMTK Game Jam 2026.</span>
+            <a class="btn play sm" href="https://shizkamin.itch.io/hvm"><svg class="ic"><use href="#i-play"/></svg>Play</a>
+          </div>
         </li>
       </ol>
     </section>
 
+    <div class="divider" aria-hidden="true"></div>
+
     <section id="hi" aria-labelledby="hi-h">
-      <h2 id="hi-h">Say hi</h2>
-      <div class="player px">
-        <p>I'm open to game development work and happy to talk about jams, roguelikes and multiplayer. Timothy will pretend he's awake.</p>
-        <div class="btns">
-          <a class="btn px" href="https://t.me/mahixm">Telegram</a>
-          <a class="btn px" href="https://www.linkedin.com/in/mahanashrafi/">LinkedIn</a>
-          <a class="btn px" href="https://github.com/Mahan-Ashrafi">GitHub</a>
-          <a class="btn px" href="https://lazypandastudio.itch.io">itch.io</a>
+      <h2 id="hi-h">About me</h2>
+      <div class="about">
+        <div>
+          <p>I'm Mahan, a game developer from Tehran. I'm the Lead Game Designer at ShizaLab, and I also run a small studio of my own called LazyPanda, where Timothy is in charge of naps.</p>
+          <p>I'm studying Computer Science at Payame Noor University and I enter a lot of game jams. I'm open to game development work, and I also take translation and graphic design jobs. I speak Persian and English.</p>
+          <ul class="chips" aria-label="Tools and skills">
+            <li>Godot</li><li>Unity</li><li>C++</li><li>JavaScript</li><li>Pixel art</li><li>Shaders</li>
+          </ul>
+          <div class="btns">
+            <a class="btn contact" href="https://t.me/mahixm"><svg class="ic"><use href="#i-telegram"/></svg>Telegram</a>
+            <a class="btn contact" href="https://www.linkedin.com/in/mahanashrafi/"><svg class="ic"><use href="#i-linkedin"/></svg>LinkedIn</a>
+            <a class="btn contact" href="https://github.com/Mahan-Ashrafi"><svg class="ic"><use href="#i-github"/></svg>GitHub</a>
+            <a class="btn contact" href="https://lazypandastudio.itch.io"><svg class="ic"><use href="#i-itch"/></svg>itch.io</a>
+          </div>
         </div>
+        <img class="sticker" src="Images/Cute.png" alt="Timothy making a heart with his paws, surrounded by sparkles" width="492" height="513" loading="lazy">
       </div>
     </section>
   </main>
 
+  <div class="divider" aria-hidden="true"></div>
+
   <footer>
-    <p>Studying Computer Science at Payame Noor University. I speak Persian and English.</p>
-    <p>Timothy is drawn by Mahan. Don't wake him up.</p>
+    <p>Made with <svg class="ic heart"><use href="#i-heart"/></svg> in Tehran by Mahan and a very sleepy panda.</p>
+    <p><small>Pixel art, panda stars and a tiny game. Plain HTML, CSS and JavaScript. &copy; 2026 Mahan Ashrafi.</small></p>
   </footer>
 </div>
+
+<script>
+/* Shared pixel art: the panda-shaped star (# = filled, . = empty) */
+const STAR_GRID = ["..##.....##..", ".####...####.", ".###########.", "#############", "###..###..###", "###..###..###", "#############", "######.######", ".###########.", "..#########..", "....#####...."];
+function spriteFrom(grid, color) {
+  const c = document.createElement("canvas");
+  c.width = grid[0].length; c.height = grid.length;
+  const x = c.getContext("2d");
+  x.fillStyle = color;
+  grid.forEach((row, y) => [...row].forEach((ch, i) => { if (ch === "#") x.fillRect(i, y, 1, 1); }));
+  return c;
+}
+const PANDA_STAR_COLORS = ["#FFFFFF", "#8FD0FF", "#FF9DBB"];
+</script>
 
 <script>
 (() => {
@@ -341,8 +508,9 @@
   const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
   const COLORS = ["#249FDE", "#285CC4", "#8FD0FF", "#FF9DBB", "#FFFFFF"];
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const pandaSprites = PANDA_STAR_COLORS.map(c => spriteFrom(STAR_GRID, c));
 
-  /* ---------- Star sky ---------- */
+  /* ---------- Star sky (dots, sparkles and panda stars) ---------- */
   const sky = document.getElementById("sky");
   const sctx = sky.getContext("2d");
   let stars = [];
@@ -352,32 +520,49 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
   function makeStars() {
-    const count = Math.round((innerWidth * innerHeight) / 14000);
-    stars = Array.from({ length: count }, () => ({
-      x: Math.floor(Math.random() * innerWidth / 4) * 4,
-      y: Math.floor(Math.random() * innerHeight / 4) * 4,
-      s: Math.random() < 0.2 ? 8 : 4,
-      c: Math.random() < 0.25 ? "#8FD0FF" : "#FFFFFF",
-      on: Math.random() < 0.8
-    }));
+    const area = innerWidth * innerHeight;
+    stars = [];
+    for (let i = 0, n = Math.round(area / 14000); i < n; i++) {
+      stars.push({
+        t: Math.random() < 0.2 ? "plus" : "dot",
+        x: Math.floor(Math.random() * innerWidth / 4) * 4,
+        y: Math.floor(Math.random() * innerHeight / 4) * 4,
+        c: Math.random() < 0.25 ? "#8FD0FF" : "#FFFFFF",
+        on: Math.random() < 0.8
+      });
+    }
+    // panda stars, with extra ones hugging the left and right edges
+    for (let i = 0, n = Math.max(7, Math.round(area / 80000)); i < n; i++) {
+      const edge = Math.random() < 0.6;
+      const x = edge
+        ? (Math.random() < 0.5 ? Math.random() * innerWidth * 0.12 : innerWidth * (0.88 + Math.random() * 0.1))
+        : Math.random() * innerWidth;
+      stars.push({
+        t: "panda", x: Math.round(x / 2) * 2, y: Math.round(Math.random() * innerHeight / 2) * 2,
+        k: Math.floor(Math.random() * pandaSprites.length), z: Math.random() < 0.3 ? 3 : 2, on: true
+      });
+    }
   }
   function drawSky() {
-    sctx.clearRect(0, 0, innerWidth, innerHeight);
+    sctx.imageSmoothingEnabled = false;
+    sctx.globalAlpha = 1;
     const g = sctx.createLinearGradient(0, 0, 0, innerHeight);
-    g.addColorStop(0, "#1B2150");
-    g.addColorStop(1, "#232C66");
+    g.addColorStop(0, "#1B2150"); g.addColorStop(1, "#232C66");
     sctx.fillStyle = g;
     sctx.fillRect(0, 0, innerWidth, innerHeight);
     for (const st of stars) {
+      if (st.t === "panda") {
+        sctx.globalAlpha = st.on ? 0.85 : 0.35;
+        sctx.drawImage(pandaSprites[st.k], st.x, st.y, 13 * st.z, 11 * st.z);
+        continue;
+      }
       if (!st.on) continue;
-      sctx.globalAlpha = st.s === 8 ? 0.9 : 0.55;
       sctx.fillStyle = st.c;
-      sctx.fillRect(st.x, st.y, st.s === 8 ? 4 : 4, 4);
-      if (st.s === 8) { // little plus-shaped star
-        sctx.fillRect(st.x - 4, st.y, 4, 4);
-        sctx.fillRect(st.x + 4, st.y, 4, 4);
-        sctx.fillRect(st.x, st.y - 4, 4, 4);
-        sctx.fillRect(st.x, st.y + 4, 4, 4);
+      sctx.globalAlpha = st.t === "plus" ? 0.9 : 0.55;
+      sctx.fillRect(st.x, st.y, 4, 4);
+      if (st.t === "plus") {
+        sctx.fillRect(st.x - 4, st.y, 4, 4); sctx.fillRect(st.x + 4, st.y, 4, 4);
+        sctx.fillRect(st.x, st.y - 4, 4, 4); sctx.fillRect(st.x, st.y + 4, 4, 4);
       }
     }
     sctx.globalAlpha = 1;
@@ -386,7 +571,7 @@
   resizeSky();
   if (!reduce) {
     setInterval(() => {
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 8; i++) {
         const st = stars[Math.floor(Math.random() * stars.length)];
         if (st) st.on = !st.on;
       }
@@ -401,27 +586,41 @@
   let running = false;
   function resizeFx() { sizeCanvas(fx, fctx); }
   resizeFx();
-  addEventListener("resize", () => { resizeFx(); resizeSky(); });
+  let resizeTimer;
+  addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { resizeFx(); resizeSky(); }, 120); });
 
+  function kick() { if (!running) { running = true; requestAnimationFrame(tick); } }
   function spawn(x, y, n, speed, gravity, life, sizes) {
     for (let i = 0; i < n; i++) {
       const a = Math.random() * Math.PI * 2;
       const v = speed * (0.4 + Math.random() * 0.8);
       parts.push({
-        x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - speed * 0.3,
-        g: gravity, life: life * (0.7 + Math.random() * 0.6), max: life,
-        s: sizes[Math.floor(Math.random() * sizes.length)],
-        c: COLORS[Math.floor(Math.random() * COLORS.length)]
+        x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - speed * 0.3, g: gravity,
+        life: life * (0.7 + Math.random() * 0.6), max: life,
+        s: sizes[Math.floor(Math.random() * sizes.length)], c: COLORS[Math.floor(Math.random() * COLORS.length)]
       });
     }
-    if (!running) { running = true; requestAnimationFrame(tick); }
+    kick();
+  }
+  function spawnStars(x, y) {
+    for (let i = 0; i < 2; i++) {
+      parts.push({ sp: true, k: Math.floor(Math.random() * pandaSprites.length), x, y,
+        vx: (Math.random() - 0.5) * 3, vy: -2 - Math.random() * 1.5, g: 0.06, life: 46, max: 46 });
+    }
+    kick();
   }
   function tick() {
     fctx.clearRect(0, 0, innerWidth, innerHeight);
+    fctx.imageSmoothingEnabled = false;
     parts = parts.filter(p => (p.life -= 1) > 0);
     for (const p of parts) {
       p.vy += p.g; p.x += p.vx; p.y += p.vy; p.vx *= 0.98;
       const t = p.life / p.max;
+      if (p.sp) {
+        fctx.globalAlpha = t > 0.3 ? 1 : 0.5;
+        fctx.drawImage(pandaSprites[p.k], Math.round(p.x / 2) * 2 - 13, Math.round(p.y / 2) * 2 - 11, 26, 22);
+        continue;
+      }
       const size = t > 0.5 ? p.s : (t > 0.2 ? p.s - 2 : 2);
       fctx.globalAlpha = t > 0.2 ? 1 : 0.6;
       fctx.fillStyle = "#0A0A12";
@@ -433,34 +632,35 @@
     if (parts.length) requestAnimationFrame(tick); else running = false;
   }
 
-  /* Click burst on any pointer */
   if (!reduce) {
-    addEventListener("pointerdown", e => spawn(e.clientX, e.clientY, 12, 4, 0.18, 34, [4, 6]));
+    addEventListener("pointerdown", e => {
+      spawn(e.clientX, e.clientY, 12, 4, 0.18, 34, [4, 6]);
+      spawnStars(e.clientX, e.clientY);
+    });
   }
 
   /* ---------- Juicy cursor ---------- */
   if (fine) {
-    const SIZE = 50;       // matches Cursor.png (tip sits at the top-left corner)
+    const SIZE = 50; // matches Cursor.png, the tip sits at the top-left corner
     const cur = document.createElement("img");
-    cur.src = "Images/Cursor.png";
-    cur.alt = "";
+    cur.src = "Images/Cursor.png"; cur.alt = "";
     cur.setAttribute("aria-hidden", "true");
     cur.width = SIZE; cur.height = SIZE;
     cur.style.cssText = "position:fixed;left:0;top:0;z-index:60;pointer-events:none;image-rendering:pixelated;transform-origin:0 0;opacity:0;will-change:transform;filter:drop-shadow(4px 4px 0 rgba(10,10,18,0.55));";
     document.body.appendChild(cur);
     document.documentElement.classList.add("has-cursor");
 
-    let mx = -100, my = -100, lastX = mx, lastY = my, trailDist = 0;
+    let mx = -100, my = -100, lastX = mx, trailDist = 0;
     let rot = 0, rotV = 0, scale = 1, scaleV = 0;
     let hot = false, down = false, visible = false;
 
     addEventListener("pointermove", e => {
       if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
       mx = e.clientX; my = e.clientY;
-      if (!visible) { visible = true; cur.style.opacity = "1"; lastX = mx; lastY = my; }
+      if (!visible) { visible = true; cur.style.opacity = "1"; lastX = mx; }
       hot = !!(e.target.closest && e.target.closest("a, button"));
       if (!reduce) {
-        trailDist += Math.hypot(mx - lastX, my - lastY);
+        trailDist += Math.hypot(mx - lastX, 0);
         if (trailDist > 18) { trailDist = 0; spawn(mx + 8, my + 8, 1, 0.7, 0.04, 22, [4]); }
       }
     });
@@ -470,17 +670,13 @@
     addEventListener("pointerup", () => { down = false; });
 
     (function loop() {
-      const vx = mx - lastX;
-      lastX = mx; lastY = my;
+      const vx = mx - lastX; lastX = mx;
       if (!reduce) {
-        // lean into the direction of travel, then spring back
         const targetRot = Math.max(-18, Math.min(18, vx * 1.2));
         rotV += (targetRot - rot) * 0.2; rotV *= 0.6; rot += rotV;
         const targetScale = down ? 0.72 : (hot ? 1.3 : 1);
         scaleV += (targetScale - scale) * 0.3; scaleV *= 0.55; scale += scaleV;
-      } else {
-        rot = 0; scale = hot ? 1.15 : 1;
-      }
+      } else { rot = 0; scale = hot ? 1.15 : 1; }
       cur.style.transform = `translate3d(${mx}px, ${my}px, 0) rotate(${rot}deg) scale(${scale})`;
       requestAnimationFrame(loop);
     })();
@@ -488,25 +684,20 @@
 
   /* ---------- Timothy ---------- */
   const tim = document.getElementById("timothy");
-  const bubble = document.getElementById("bubble");
+  const bubbleText = document.getElementById("bubble-text");
   let line = 0;
-  tim.addEventListener("click", e => {
+  tim.addEventListener("click", () => {
     line = (line + 1) % LINES.length;
-    bubble.textContent = LINES[line];
+    bubbleText.textContent = LINES[line];
     if (reduce) return;
     tim.animate([
-      { transform: "scale(1, 1)" },
-      { transform: "scale(1.14, 0.84)" },
-      { transform: "scale(0.9, 1.1)" },
-      { transform: "scale(1.04, 0.97)" },
-      { transform: "scale(1, 1)" }
+      { transform: "scale(1, 1)" }, { transform: "scale(1.14, 0.84)" }, { transform: "scale(0.9, 1.1)" },
+      { transform: "scale(1.04, 0.97)" }, { transform: "scale(1, 1)" }
     ], { duration: 420, easing: "ease-out" });
-    // floating Z's
     const r = tim.getBoundingClientRect();
     for (let i = 0; i < 3; i++) {
       const z = document.createElement("span");
-      z.className = "zzz";
-      z.textContent = "Z";
+      z.className = "zzz"; z.textContent = "Z";
       z.style.left = (r.left + r.width * 0.62 + i * 14 + scrollX) + "px";
       z.style.top = (r.top + r.height * 0.18 + scrollY) + "px";
       z.style.fontSize = (16 + i * 8) + "px";
@@ -515,10 +706,238 @@
       z.animate([
         { transform: "translate(0, 0)", opacity: 1 },
         { transform: `translate(${20 + i * 14}px, ${-50 - i * 22}px)`, opacity: 0 }
-      ], { duration: 1100, delay: i * 140, easing: "steps(8)", fill: "forwards" })
-        .onfinish = () => z.remove();
+      ], { duration: 1100, delay: i * 140, easing: "steps(8)", fill: "forwards" }).onfinish = () => z.remove();
     }
   });
+
+  /* ---------- More games ---------- */
+  const moreBtn = document.getElementById("more-btn");
+  const moreList = document.getElementById("more");
+  const moreLabel = document.getElementById("more-label");
+  moreBtn.addEventListener("click", () => {
+    const open = moreBtn.getAttribute("aria-expanded") === "true";
+    moreBtn.setAttribute("aria-expanded", String(!open));
+    moreList.hidden = open;
+    moreLabel.textContent = open ? "More games" : "Fewer games";
+  });
+})();
+</script>
+
+<script>
+/* ---------- Mini game: Catch the stars ---------- */
+(() => {
+  const W = 256, H = 160, GROUND = H - 8;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const canvas = document.getElementById("game");
+  const g = canvas.getContext("2d");
+  canvas.width = W; canvas.height = H;
+  g.imageSmoothingEnabled = false;
+
+  const el = id => document.getElementById(id);
+  const scoreEl = el("score"), bestEl = el("best"), heartsEl = el("hearts");
+  const overlay = el("overlay"), ovImg = el("ov-img"), ovTitle = el("ov-title"), ovText = el("ov-text");
+  const ovBtn = el("ov-btn"), ovBtnText = el("ov-btn-text"), soundBtn = el("sound");
+
+  // sprites
+  const playerImg = new Image(); playerImg.src = "Images/TimothySprite.png";
+  const starSprite = spriteFrom(STAR_GRID, "#FFFFFF");
+  const FLAME = [
+    "...o...", "...oo..", "..ooo..", "..ooyo.", ".oooyoo",
+    ".ooyyoo", "oooywyo", "oooywyo", ".ooyyo.", "..ooo.."
+  ];
+  const flameSprite = (() => {
+    const c = document.createElement("canvas"); c.width = 7; c.height = FLAME.length;
+    const x = c.getContext("2d");
+    const pal = { o: "#FF8A2B", y: "#FFE066", w: "#FFFFFF" };
+    FLAME.forEach((r, y) => [...r].forEach((ch, i) => { if (pal[ch]) { x.fillStyle = pal[ch]; x.fillRect(i, y, 1, 1); } }));
+    return c;
+  })();
+  const bgStars = Array.from({ length: 28 }, () => ({ x: Math.floor(Math.random() * W), y: Math.floor(Math.random() * (GROUND - 10)), p: Math.floor(Math.random() * 60) }));
+
+  // state
+  let state = "idle", score = 0, lives = 3, best = 0, spawnT = 0, shake = 0, flash = 0;
+  let items = [], gparts = [];
+  const pl = { x: W / 2, tx: W / 2 };
+  const keys = { l: false, r: false };
+  let inView = true;
+  try { best = parseInt(localStorage.getItem("tim-best") || "0", 10) || 0; } catch (e) { best = 0; }
+
+  // sound (off until the player turns it on)
+  let audio = null, soundOn = false;
+  function beep(f, d, type, v, slide) {
+    if (!soundOn) return;
+    try {
+      audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+      const t = audio.currentTime, o = audio.createOscillator(), a = audio.createGain();
+      o.type = type || "square";
+      o.frequency.setValueAtTime(f, t);
+      if (slide) o.frequency.exponentialRampToValueAtTime(Math.max(40, f + slide), t + d);
+      a.gain.setValueAtTime(v || 0.05, t);
+      a.gain.exponentialRampToValueAtTime(0.0001, t + d);
+      o.connect(a); a.connect(audio.destination);
+      o.start(t); o.stop(t + d);
+    } catch (e) { /* audio is optional */ }
+  }
+  soundBtn.addEventListener("click", () => {
+    soundOn = !soundOn;
+    soundBtn.setAttribute("aria-pressed", String(soundOn));
+    soundBtn.textContent = soundOn ? "Sound on" : "Sound off";
+    beep(660, 0.1, "square", 0.05, 220);
+  });
+
+  function drawHearts() {
+    let html = "";
+    for (let i = 0; i < 3; i++) html += `<svg class="ic${i < lives ? "" : " off"}"><use href="#i-heart"/></svg>`;
+    heartsEl.innerHTML = html;
+    heartsEl.setAttribute("aria-label", lives + (lives === 1 ? " life left" : " lives left"));
+  }
+  function hud() { scoreEl.textContent = score; bestEl.textContent = best; drawHearts(); }
+
+  function showOverlay(mode) {
+    if (mode === "start") {
+      ovImg.src = "Images/Burn.png"; ovImg.alt = "Timothy holding a gas can and a lit match";
+      ovTitle.textContent = "Star catcher";
+      ovText.textContent = "Catch the panda stars and dodge the flames. Tim started the fire, sorry.";
+      ovBtnText.textContent = "Play";
+    } else if (mode === "best") {
+      ovImg.src = "Images/Cute.png"; ovImg.alt = "Timothy making a heart with his paws";
+      ovTitle.textContent = "New best!";
+      ovText.textContent = "You caught " + score + " stars. Timothy is so proud.";
+      ovBtnText.textContent = "Play again";
+    } else {
+      ovImg.src = "Images/Crying.png"; ovImg.alt = "Timothy crying on the floor";
+      ovTitle.textContent = "Tim is crying";
+      ovText.textContent = "You caught " + score + " stars. Your best is " + best + ".";
+      ovBtnText.textContent = "Try again";
+    }
+    overlay.hidden = false;
+  }
+
+  function start() {
+    state = "playing"; score = 0; lives = 3; items = []; gparts = []; spawnT = 30; shake = 0; flash = 0;
+    pl.x = pl.tx = W / 2;
+    overlay.hidden = true; hud();
+    canvas.focus({ preventScroll: true });
+    beep(440, 0.08, "square", 0.04, 440);
+  }
+  function over() {
+    state = "over";
+    const isBest = score > best && score > 0;
+    if (isBest) { best = score; try { localStorage.setItem("tim-best", String(best)); } catch (e) { /* storage is optional */ } }
+    hud();
+    beep(300, 0.5, "sawtooth", 0.05, -240);
+    showOverlay(isBest ? "best" : "over");
+    ovBtn.focus({ preventScroll: true });
+  }
+  ovBtn.addEventListener("click", start);
+
+  // input
+  function aim(e) {
+    const r = canvas.getBoundingClientRect();
+    pl.tx = (e.clientX - r.left) / r.width * W;
+  }
+  canvas.addEventListener("pointermove", aim);
+  canvas.addEventListener("pointerdown", aim);
+  addEventListener("keydown", e => {
+    if (state !== "playing" || !inView) return;
+    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") { keys.l = true; e.preventDefault(); }
+    if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") { keys.r = true; e.preventDefault(); }
+  });
+  addEventListener("keyup", e => {
+    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") keys.l = false;
+    if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") keys.r = false;
+  });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(es => { inView = es[0].isIntersecting; }, { threshold: 0.2 }).observe(canvas);
+  }
+
+  function burst(x, y, colors, n) {
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * Math.PI * 2, v = 0.6 + Math.random() * 1.6;
+      gparts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 0.6, life: 22 + Math.random() * 12, c: colors[Math.floor(Math.random() * colors.length)] });
+    }
+  }
+
+  function spawnItem() {
+    const flameChance = Math.min(0.18 + score * 0.008, 0.42);
+    const isFlame = Math.random() < flameChance;
+    items.push({
+      k: isFlame ? "flame" : "star", x: 8 + Math.random() * (W - 30), y: -12,
+      vy: 0.7 + Math.random() * 0.5 + Math.min(score * 0.02, 1.2)
+    });
+  }
+
+  function step(dt) {
+    const dir = (keys.r ? 1 : 0) - (keys.l ? 1 : 0);
+    if (dir) pl.tx += dir * 3.2 * dt;
+    pl.tx = Math.max(13, Math.min(W - 13, pl.tx));
+    pl.x += (pl.tx - pl.x) * Math.min(1, 0.35 * dt);
+
+    spawnT -= dt;
+    if (spawnT <= 0) { spawnItem(); spawnT = Math.max(16, 46 - score * 0.9) * (0.7 + Math.random() * 0.6); }
+
+    const px0 = pl.x - 10, px1 = pl.x + 10, py0 = GROUND - 24, py1 = GROUND;
+    for (const it of items) {
+      it.y += it.vy * dt;
+      const w = it.k === "star" ? 13 : 7, h = it.k === "star" ? 11 : 10;
+      if (!it.dead && it.x < px1 && it.x + w > px0 && it.y < py1 && it.y + h > py0) {
+        it.dead = true;
+        if (it.k === "star") {
+          score++; burst(it.x + 6, it.y + 5, ["#FFFFFF", "#8FD0FF", "#FF9DBB"], 8);
+          beep(700 + Math.min(score, 20) * 20, 0.09, "square", 0.04, 300);
+          hud();
+        } else {
+          lives--; flash = 10; if (!reduce) shake = 8;
+          burst(it.x + 3, it.y + 5, ["#FF8A2B", "#FFE066", "#FFFFFF"], 12);
+          beep(150, 0.25, "sawtooth", 0.06, -80);
+          hud();
+          if (lives <= 0) { over(); return; }
+        }
+      }
+      if (it.y > H) it.dead = true;
+    }
+    items = items.filter(it => !it.dead);
+    for (const p of gparts) { p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 0.06 * dt; p.life -= dt; }
+    gparts = gparts.filter(p => p.life > 0);
+    if (shake > 0) shake -= dt;
+    if (flash > 0) flash -= dt;
+  }
+
+  function draw(now) {
+    g.setTransform(1, 0, 0, 1, 0, 0);
+    g.fillStyle = "#1B2150"; g.fillRect(0, 0, W, H);
+    g.fillStyle = "#232C66"; g.fillRect(0, Math.floor(H * 0.55), W, H);
+    const t = Math.floor(now / 500);
+    for (const s of bgStars) { g.fillStyle = ((t + s.p) % 3 === 0) ? "#8FD0FF" : "#FFFFFF"; g.globalAlpha = ((t + s.p) % 3 === 0) ? 0.4 : 0.8; g.fillRect(s.x, s.y, 1, 1); }
+    g.globalAlpha = 1;
+    const sx = shake > 0 ? Math.round((Math.random() - 0.5) * 4) : 0, sy = shake > 0 ? Math.round((Math.random() - 0.5) * 4) : 0;
+    g.setTransform(1, 0, 0, 1, sx, sy);
+    // ground
+    g.fillStyle = "#464762"; g.fillRect(-4, GROUND, W + 8, H - GROUND + 4);
+    g.fillStyle = "#0A0A12"; g.fillRect(-4, GROUND, W + 8, 1);
+    for (let x = 0; x < W; x += 8) { g.fillStyle = "#373949"; g.fillRect(x, GROUND + 3, 4, 1); }
+    // items
+    for (const it of items) g.drawImage(it.k === "star" ? starSprite : flameSprite, Math.round(it.x), Math.round(it.y));
+    // player
+    if (playerImg.complete && playerImg.naturalWidth) {
+      const bob = state === "playing" ? Math.round(Math.sin(now / 120)) : 0;
+      g.drawImage(playerImg, Math.round(pl.x) - 13, GROUND - 28 + bob);
+    } else { g.fillStyle = "#FFFFFF"; g.fillRect(Math.round(pl.x) - 8, GROUND - 22, 16, 22); }
+    // particles
+    for (const p of gparts) { g.fillStyle = p.c; g.globalAlpha = Math.min(1, p.life / 12); g.fillRect(Math.round(p.x), Math.round(p.y), 2, 2); }
+    g.globalAlpha = 1;
+    if (flash > 0) { g.fillStyle = "rgba(255, 90, 60, 0.28)"; g.fillRect(-4, -4, W + 8, H + 8); }
+  }
+
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min(2.5, (now - last) / 16.667); last = now;
+    if (state === "playing" && inView && !document.hidden) step(dt);
+    if (inView) draw(now);
+    requestAnimationFrame(frame);
+  }
+  hud(); showOverlay("start");
+  requestAnimationFrame(frame);
 })();
 </script>
 </body>
