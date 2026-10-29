@@ -3,36 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mahan Ashrafi | Game Developer</title>
-<meta name="description" content="Mahan Ashrafi is a game developer and designer in Tehran. Roguelikes, multiplayer games and game jam entries in Godot and Unity.">
-<meta property="og:title" content="Mahan Ashrafi | Game Developer">
-<meta property="og:description" content="Roguelikes, multiplayer games and game jam entries in Godot and Unity.">
-<meta property="og:image" content="Images/Dolge.jpg">
+<title>LazyPanda Studio | Games by Mahan Ashrafi</title>
+<meta name="description" content="LazyPanda Studio is the game hub of Mahan Ashrafi, a game developer in Tehran. Roguelikes, multiplayer games and game jam entries, guarded by Timothy the panda.">
+<meta property="og:title" content="LazyPanda Studio | Games by Mahan Ashrafi">
+<meta property="og:description" content="Roguelikes, multiplayer games and game jam entries, guarded by Timothy the panda.">
+<meta property="og:image" content="Images/Timothy.png">
+<link rel="icon" href="Images/Timothy.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+  /* Timothy's colors */
   :root {
-    --bg: #EDF1F7;
-    --card: #FFFFFF;
-    --ink: #18213A;
-    --muted: #4F5A75;
-    --line: #C9D1E3;
-    --accent: #3B5BDB;
-    --on-accent: #FFFFFF;
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #121829;
-      --card: #1A2238;
-      --ink: #E8ECF8;
-      --muted: #A3AECB;
-      --line: #2C3757;
-      --accent: #8FA8FF;
-      --on-accent: #121829;
-      color-scheme: dark;
-    }
+    --night: #1B2150;
+    --night-2: #232C66;
+    --royal: #285CC4;
+    --sky: #249FDE;
+    --sky-light: #8FD0FF;
+    --shoe: #0071BC;
+    --slate: #464762;
+    --slate-dark: #373949;
+    --ink: #0A0A12;
+    --blush: #FF9DBB;
+    --blush-dark: #7A3354;
+    --white: #FFFFFF;
+    --text-soft: #D3D8F2;
+    --px: 4px;
+    color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
@@ -41,178 +38,488 @@
 
   body {
     margin: 0;
-    background: var(--bg);
-    color: var(--ink);
+    background: var(--night);
+    color: var(--white);
     font-family: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     font-size: 1.0625rem;
     line-height: 1.6;
+    min-height: 100vh;
   }
 
-  a { color: var(--accent); text-underline-offset: 3px; }
-  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  /* Fine-pointer devices get the custom cursor (class added by script) */
+  html.has-cursor, html.has-cursor * { cursor: none !important; }
 
-  .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.25rem; }
+  a { color: var(--sky-light); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible {
+    outline: 4px solid var(--blush);
+    outline-offset: 4px;
+  }
 
-  /* Header */
-  header { padding: 4rem 0 2.5rem; }
+  .wrap { max-width: 66rem; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 2; }
+
+  /* Background layers */
+  #sky, #fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  #sky { z-index: 0; }
+  #fx { z-index: 50; }
+
+  /* Pixel box: stepped corners drawn with box-shadow */
+  .px {
+    box-shadow:
+      0 calc(var(--px) * -1) 0 0 var(--ink),
+      0 var(--px) 0 0 var(--ink),
+      calc(var(--px) * -1) 0 0 0 var(--ink),
+      var(--px) 0 0 0 var(--ink);
+  }
+
+  /* Top bar */
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 0; flex-wrap: wrap; }
+  .logo { font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; font-size: 1.35rem; color: var(--white); text-decoration: none; }
+  .nav { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+  .nav a {
+    display: inline-block; padding: 0.35rem 0.85rem; text-decoration: none; font-weight: 700;
+    color: var(--white); background: var(--slate); margin: var(--px);
+  }
+  .nav a:hover { background: var(--sky); color: var(--ink); }
+
+  /* Hero */
+  .hero { display: grid; gap: 1.5rem; align-items: center; padding: 1.5rem 0 3.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 52rem) { .hero { grid-template-columns: 1.1fr 0.9fr; padding-top: 2.5rem; } }
   h1 {
-    font-family: "Silkscreen", "Courier New", monospace;
-    font-weight: 700;
-    font-size: clamp(2.6rem, 9vw, 5.5rem);
-    line-height: 1;
-    letter-spacing: 0.01em;
-    margin: 0 0 1.25rem;
+    font-family: "Silkscreen", "Courier New", monospace; font-weight: 700;
+    font-size: clamp(2.5rem, 8.5vw, 5rem); line-height: 1.02; margin: 0 0 1.25rem;
+    text-shadow: 4px 4px 0 var(--royal);
   }
-  .intro { max-width: 38rem; margin: 0 0 0.75rem; font-size: 1.25rem; }
-  .status { margin: 0 0 1.5rem; color: var(--muted); }
-  .links { display: flex; flex-wrap: wrap; gap: 0.6rem; padding: 0; margin: 0; list-style: none; }
-  .links a {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border: 2px solid var(--ink);
-    color: var(--ink);
-    text-decoration: none;
-    font-weight: 700;
-    background: var(--card);
+  .intro { font-size: 1.25rem; max-width: 34rem; margin: 0 0 0.6rem; }
+  .status { color: var(--text-soft); margin: 0 0 1.75rem; max-width: 34rem; }
+  .btns { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+  .btn {
+    display: inline-block; margin: var(--px); padding: 0.65rem 1.25rem; text-decoration: none;
+    font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; font-size: 1.05rem;
+    background: var(--sky); color: var(--ink);
   }
-  .links a:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .btn.alt { background: var(--blush); }
+  .btn:hover { background: var(--white); }
+
+  /* Timothy */
+  .stage { position: relative; justify-self: center; width: min(22rem, 78vw); padding-top: 5.5rem; }
+  .bubble {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%;
+    background: var(--white); color: var(--ink); padding: 0.75rem 1rem; margin: var(--px) 0; font-weight: 700; line-height: 1.35;
+    min-height: 4.1rem; display: flex; align-items: center;
+  }
+  .bubble::after {
+    content: ""; position: absolute; left: 52%; bottom: -16px; width: 12px; height: 12px;
+    background: var(--white);
+    box-shadow: 0 4px 0 0 var(--white), 0 8px 0 0 var(--ink), 4px 4px 0 0 var(--ink), -4px 4px 0 0 var(--ink), 4px 0 0 0 var(--ink), -4px 0 0 0 var(--ink);
+  }
+  .timothy {
+    display: block; width: 100%; background: none; border: 0; padding: 0; margin: 0; font: inherit;
+    position: relative; transform-origin: 50% 100%;
+  }
+  .timothy img { display: block; width: 100%; height: auto; animation: bob 2.6s steps(5) infinite; }
+  @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .ground {
+    height: calc(var(--px) * 3); margin: 0 8%; background: var(--slate-dark);
+    box-shadow: 0 var(--px) 0 0 var(--ink);
+  }
+  .zzz {
+    position: absolute; font-family: "Silkscreen", monospace; font-weight: 700; color: var(--sky-light);
+    pointer-events: none; z-index: 5; text-shadow: 2px 2px 0 var(--ink);
+  }
 
   /* Sections */
-  h2 {
-    font-family: "Silkscreen", "Courier New", monospace;
-    font-weight: 700;
-    font-size: 1.6rem;
-    margin: 0 0 1.5rem;
-    padding-bottom: 0.6rem;
-    border-bottom: 3px solid var(--ink);
-  }
   section { padding: 2.5rem 0; }
+  h2 {
+    font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; font-size: 1.9rem;
+    margin: 0 0 0.4rem; text-shadow: 3px 3px 0 var(--royal);
+  }
+  .lead { margin: 0 0 1.75rem; color: var(--text-soft); max-width: 36rem; }
 
-  /* Games */
-  .games { display: grid; gap: 1.75rem; grid-template-columns: 1fr; }
+  /* Game cards */
+  .games { display: grid; gap: 1.75rem; grid-template-columns: 1fr; padding: var(--px); }
   @media (min-width: 46rem) { .games { grid-template-columns: 1fr 1fr; } }
-  .game { background: var(--card); border: 2px solid var(--line); display: flex; flex-direction: column; }
-  .game img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-bottom: 2px solid var(--line); }
-  .game div { padding: 1rem 1.15rem 1.25rem; }
-  .game h3 { margin: 0 0 0.2rem; font-size: 1.25rem; }
-  .game .tag { margin: 0 0 0.6rem; color: var(--muted); font-size: 0.95rem; font-weight: 600; }
-  .game p { margin: 0; }
+  @media (min-width: 66rem) { .games { grid-template-columns: 1fr 1fr 1fr; } }
+  .card {
+    background: var(--slate); display: flex; flex-direction: column; margin: 0;
+    transition: transform 0.18s steps(3);
+  }
+  .card:hover { transform: translateY(-8px); }
+  .shot { position: relative; background: var(--slate-dark); border-bottom: var(--px) solid var(--ink); }
+  .shot img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .shot::after {
+    content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity 0.18s steps(2);
+    background: repeating-linear-gradient(to bottom, rgba(10,10,18,0.35) 0 2px, transparent 2px 4px);
+  }
+  .card:hover .shot::after { opacity: 1; }
+  .body { padding: 1rem 1.15rem 1.3rem; display: flex; flex-direction: column; flex: 1; }
+  .card h3 { margin: 0 0 0.5rem; font-size: 1.25rem; line-height: 1.25; }
+  .badge {
+    align-self: flex-start; padding: 0.1rem 0.6rem; margin: 0 0 0.7rem; font-weight: 700; font-size: 0.85rem;
+    color: var(--ink); background: var(--blush);
+  }
+  .badge.live { background: var(--sky-light); }
+  .card p { margin: 0 0 0.9rem; color: var(--text-soft); }
+  .card .play { margin-top: auto; align-self: flex-start; font-weight: 700; }
 
-  /* Jams */
-  .jams { list-style: none; margin: 0; padding: 0; }
-  .jams li { display: grid; gap: 0.15rem 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
-  @media (min-width: 46rem) { .jams li { grid-template-columns: 11rem 1fr; } }
-  .place { font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; font-size: 1.05rem; }
-  .jams span.detail { color: var(--muted); }
+  /* High scores */
+  .scores { background: var(--slate-dark); margin: var(--px); padding: 0.5rem 1.25rem; list-style: none; }
+  .scores li {
+    display: grid; gap: 0.1rem 1.5rem; padding: 1rem 0; border-bottom: var(--px) dotted var(--slate);
+  }
+  .scores li:last-child { border-bottom: 0; }
+  @media (min-width: 46rem) { .scores li { grid-template-columns: 9.5rem 1fr; align-items: baseline; } }
+  .rank { font-family: "Silkscreen", "Courier New", monospace; font-weight: 700; font-size: 1.3rem; color: var(--blush); }
+  .scores .what { color: var(--text-soft); }
+  .scores .what strong { color: var(--white); }
+  .more { margin: 1.5rem 0 0; color: var(--text-soft); }
 
-  .more { margin: 1.5rem 0 0; }
+  /* Contact */
+  .player { background: var(--royal); margin: var(--px); padding: 1.5rem 1.5rem 1.75rem; }
+  .player p { margin: 0 0 1.25rem; max-width: 36rem; }
+  .player .btn { background: var(--white); }
+  .player .btn:hover { background: var(--blush); }
 
-  footer { padding: 2rem 0 3rem; color: var(--muted); border-top: 2px solid var(--line); margin-top: 1.5rem; }
-  footer p { margin: 0 0 0.5rem; }
+  footer { padding: 2.5rem 0 3.5rem; color: var(--text-soft); }
+  footer p { margin: 0 0 0.4rem; }
 </style>
 </head>
 <body>
 
-<header class="wrap">
-  <h1>Mahan Ashrafi</h1>
-  <p class="intro">I'm a game developer and designer in Tehran. I make roguelikes, multiplayer games and game jam entries in Godot and Unity.</p>
-  <p class="status">Lead Game Designer at ShizaLab. Founder of LazyPanda Studio. Open to game development work.</p>
-  <ul class="links">
-    <li><a href="https://lazypandastudio.itch.io">itch.io</a></li>
-    <li><a href="https://github.com/Mahan-Ashrafi">GitHub</a></li>
-    <li><a href="https://www.linkedin.com/in/mahanashrafi/">LinkedIn</a></li>
-    <li><a href="https://t.me/mahixm">Telegram</a></li>
-  </ul>
-</header>
+<canvas id="sky" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
 
-<main class="wrap">
-  <section id="games">
-    <h2>Games</h2>
-    <div class="games">
+<div class="wrap">
+  <header class="bar">
+    <a class="logo" href="#top">LazyPanda</a>
+    <nav aria-label="Page sections">
+      <ul class="nav">
+        <li><a href="#games">Games</a></li>
+        <li><a href="#scores">High scores</a></li>
+        <li><a href="#hi">Say hi</a></li>
+      </ul>
+    </nav>
+  </header>
 
-      <article class="game">
-        <img src="Images/Dolge.jpg" alt="Dolge shop screen: a dim table with chips, a die and a card for sale, and a shopkeeper in a red-star hat behind it" loading="lazy">
-        <div>
-          <h3>Dolge</h3>
-          <p class="tag">Godot, solo, in development</p>
-          <p>A first-person gambling roguelike that mixes Balatro-style engine building with Buckshot Roulette tension.</p>
+  <main id="top">
+    <div class="hero">
+      <div>
+        <h1>LazyPanda Studio</h1>
+        <p class="intro">Games by Mahan Ashrafi, a game developer in Tehran. Roguelikes, multiplayer games and game jam entries in Godot and Unity.</p>
+        <p class="status">Lead Game Designer at ShizaLab. Open to game development work.</p>
+        <div class="btns">
+          <a class="btn px" href="#games">Pick a game</a>
+          <a class="btn alt px" href="#hi">Say hi</a>
         </div>
-      </article>
+      </div>
 
-      <article class="game">
-        <img src="Images/MonsterOnTheMenu.jpg" alt="Three players with swords and backpacks standing on a hillside in Monster on the Menu!" loading="lazy">
-        <div>
-          <h3>Monster on the Menu!</h3>
-          <p class="tag">Unity and Mirror, team project for ShizaLab, in development</p>
-          <p>A multiplayer cooking and hunting game. I built the terrain, a stylized grass shader and a networked beer-pour minigame.</p>
-        </div>
-      </article>
-
-      <article class="game">
-        <img src="Images/MashhadGame.jpg" alt="A cartoon Earth mascot in a green cap greeting players in a city street, next to the Mashhad municipality logo" loading="lazy">
-        <div>
-          <h3>Waste-sorting games for Mashhad Municipality</h3>
-          <p class="tag">Godot, client work with ShizaLab</p>
-          <p>Touch games that teach kids to sort trash. Players throw balls at a park screen, and a two-team table version is in the works.</p>
-        </div>
-      </article>
-
-      <article class="game">
-        <img src="Images/Gloop.jpg" alt="A glowing orange gel blob in a lab covered in red splatter, seen from above" loading="lazy">
-        <div>
-          <h3>Gloop</h3>
-          <p class="tag">Gamecraft 2026 team entry, 7 days</p>
-          <p>A pixel-art bullet hell roguelike about a sentient gel escaping a lab. It has procedural floors, mutations and bosses.</p>
-        </div>
-      </article>
-
-      <article class="game">
-        <img src="Images/LittleByLittle.jpg" alt="A pixel-art character fishing at a heart-shaped pond with a timing bar at the top of the screen" loading="lazy">
-        <div>
-          <h3>Little by Little</h3>
-          <p class="tag">Godot, solo, in development</p>
-          <p>A cozy mobile garden game with hand-drawn pixel art, growing plants, bees and a fishing minigame.</p>
-        </div>
-      </article>
-
-      <article class="game">
-        <img src="Images/Unstable.jpg" alt="A horse-headed character running past a burst of fire in front of a tall wooden barn" loading="lazy">
-        <div>
-          <h3>Unstable</h3>
-          <p class="tag">Gamecraft 2025, 3rd place</p>
-          <p>A platformer made in 7 days. <a href="https://lazypandastudio.itch.io/unstable">Play it on itch.io</a>.</p>
-        </div>
-      </article>
-
+      <div class="stage">
+        <p class="bubble px" id="bubble" aria-live="polite">zzz... oh. hi. I'm Timothy.</p>
+        <button class="timothy" id="timothy" type="button" aria-label="Poke Timothy the panda">
+          <img src="Images/Timothy.png" alt="Timothy, a cartoon panda in a blue striped nightcap with big sparkly eyes" width="626" height="690">
+        </button>
+        <div class="ground" aria-hidden="true"></div>
+      </div>
     </div>
-  </section>
 
-  <section id="jams">
-    <h2>Game jam results</h2>
-    <ul class="jams">
-      <li>
-        <span class="place">3rd place</span>
-        <span class="detail">Gamecraft 2025 (AUT), 7 days: <a href="https://lazypandastudio.itch.io/unstable">Unstable</a></span>
-      </li>
-      <li>
-        <span class="place">6th place</span>
-        <span class="detail">Bugs Buzzy game jam (Sharif University of Technology), 10 days: <a href="https://lazypandastudio.itch.io/starbound">Star Bound</a></span>
-      </li>
-      <li>
-        <span class="place">About 40th</span>
-        <span class="detail">GMTK Game Jam 2026: <a href="https://shizkamin.itch.io/hvm">Have Manners!</a></span>
-      </li>
-    </ul>
-    <p class="more">More games, including Mous't Wanted, Marty Party and Cash Slash, are on <a href="https://lazypandastudio.itch.io">my itch.io page</a>.</p>
-  </section>
-</main>
+    <section id="games" aria-labelledby="games-h">
+      <h2 id="games-h">Pick a game</h2>
+      <p class="lead">Some you can play right now. The rest are still in the oven.</p>
+      <div class="games">
 
-<footer>
-  <div class="wrap">
+        <article class="card px">
+          <div class="shot"><img src="Images/Unstable.jpg" alt="A horse-headed character running past a burst of fire in front of a tall wooden barn" loading="lazy"></div>
+          <div class="body">
+            <h3>Unstable</h3>
+            <span class="badge live">Playable on itch.io</span>
+            <p>A platformer made in 7 days. It took 3rd place at Gamecraft 2025.</p>
+            <a class="play" href="https://lazypandastudio.itch.io/unstable">Play Unstable</a>
+          </div>
+        </article>
+
+        <article class="card px">
+          <div class="shot"><img src="Images/Gloop.jpg" alt="A glowing orange gel blob in a lab covered in red splatter, seen from above" loading="lazy"></div>
+          <div class="body">
+            <h3>Gloop</h3>
+            <span class="badge live">Playable on itch.io</span>
+            <p>A bullet hell roguelike about a sentient gel escaping a lab. Made with a team in 7 days for Gamecraft 2026.</p>
+            <a class="play" href="https://shizalab.itch.io/00p">Play Gloop</a>
+          </div>
+        </article>
+
+        <article class="card px">
+          <div class="shot"><img src="Images/Dolge.jpg" alt="Dolge shop screen: a dim table with chips, a die and a card for sale, and a shopkeeper in a red-star hat behind it" loading="lazy"></div>
+          <div class="body">
+            <h3>Dolge</h3>
+            <span class="badge">In development</span>
+            <p>A first-person gambling roguelike that mixes Balatro-style engine building with Buckshot Roulette tension.</p>
+          </div>
+        </article>
+
+        <article class="card px">
+          <div class="shot"><img src="Images/MonsterOnTheMenu.jpg" alt="Three players with swords and backpacks standing on a hillside in Monster on the Menu!" loading="lazy"></div>
+          <div class="body">
+            <h3>Monster on the Menu!</h3>
+            <span class="badge">In development</span>
+            <p>A multiplayer cooking and hunting game from ShizaLab. I built the terrain, a stylized grass shader and a networked beer-pour minigame.</p>
+          </div>
+        </article>
+
+        <article class="card px">
+          <div class="shot"><img src="Images/LittleByLittle.jpg" alt="A pixel-art character fishing at a heart-shaped pond with a timing bar at the top of the screen" loading="lazy"></div>
+          <div class="body">
+            <h3>Little by Little</h3>
+            <span class="badge">In development</span>
+            <p>A cozy mobile garden game with hand-drawn pixel art, growing plants, bees and a fishing minigame.</p>
+          </div>
+        </article>
+
+        <article class="card px">
+          <div class="shot"><img src="Images/MashhadGame.jpg" alt="A cartoon Earth mascot in a green cap greeting players in a city street, next to the Mashhad municipality logo" loading="lazy"></div>
+          <div class="body">
+            <h3>Waste-sorting games</h3>
+            <span class="badge">Made for Mashhad Municipality</span>
+            <p>Touch games that teach kids to sort trash. Players throw balls at a park screen, and a two-team table version is in the works.</p>
+          </div>
+        </article>
+
+      </div>
+      <p class="more">More games, including Mous't Wanted, Marty Party and Cash Slash, are on <a href="https://lazypandastudio.itch.io">the LazyPanda itch.io page</a>.</p>
+    </section>
+
+    <section id="scores" aria-labelledby="scores-h">
+      <h2 id="scores-h">High scores</h2>
+      <p class="lead">Game jam results so far.</p>
+      <ol class="scores px">
+        <li>
+          <span class="rank">3rd place</span>
+          <span class="what"><strong>Unstable</strong> at Gamecraft 2025 (AUT), 7 days. <a href="https://lazypandastudio.itch.io/unstable">Play it</a>.</span>
+        </li>
+        <li>
+          <span class="rank">6th place</span>
+          <span class="what"><strong>Star Bound</strong> at the Bugs Buzzy game jam (Sharif University of Technology), 10 days. <a href="https://lazypandastudio.itch.io/starbound">Play it</a>.</span>
+        </li>
+        <li>
+          <span class="rank">About 40th</span>
+          <span class="what"><strong>Have Manners!</strong> at GMTK Game Jam 2026. <a href="https://shizkamin.itch.io/hvm">Play it</a>.</span>
+        </li>
+      </ol>
+    </section>
+
+    <section id="hi" aria-labelledby="hi-h">
+      <h2 id="hi-h">Say hi</h2>
+      <div class="player px">
+        <p>I'm open to game development work and happy to talk about jams, roguelikes and multiplayer. Timothy will pretend he's awake.</p>
+        <div class="btns">
+          <a class="btn px" href="https://t.me/mahixm">Telegram</a>
+          <a class="btn px" href="https://www.linkedin.com/in/mahanashrafi/">LinkedIn</a>
+          <a class="btn px" href="https://github.com/Mahan-Ashrafi">GitHub</a>
+          <a class="btn px" href="https://lazypandastudio.itch.io">itch.io</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
     <p>Studying Computer Science at Payame Noor University. I speak Persian and English.</p>
-    <p>Find me on <a href="https://t.me/mahixm">Telegram</a> or <a href="https://www.linkedin.com/in/mahanashrafi/">LinkedIn</a>.</p>
-  </div>
-</footer>
+    <p>Timothy is drawn by Mahan. Don't wake him up.</p>
+  </footer>
+</div>
 
+<script>
+(() => {
+  // Edit these to change what Timothy says when you poke him
+  const LINES = [
+    "zzz... oh. hi. I'm Timothy.",
+    "Mahan makes the games. I supervise. From bed.",
+    "Try Unstable. It got 3rd place and I did nothing.",
+    "Dolge is cooking. I smelled it. It smells like luck.",
+    "Hey. You poked me. Hire Mahan, then I can nap.",
+    "Five more minutes..."
+  ];
+
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const COLORS = ["#249FDE", "#285CC4", "#8FD0FF", "#FF9DBB", "#FFFFFF"];
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  /* ---------- Star sky ---------- */
+  const sky = document.getElementById("sky");
+  const sctx = sky.getContext("2d");
+  let stars = [];
+  function sizeCanvas(c, ctx) {
+    c.width = Math.floor(innerWidth * dpr);
+    c.height = Math.floor(innerHeight * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function makeStars() {
+    const count = Math.round((innerWidth * innerHeight) / 14000);
+    stars = Array.from({ length: count }, () => ({
+      x: Math.floor(Math.random() * innerWidth / 4) * 4,
+      y: Math.floor(Math.random() * innerHeight / 4) * 4,
+      s: Math.random() < 0.2 ? 8 : 4,
+      c: Math.random() < 0.25 ? "#8FD0FF" : "#FFFFFF",
+      on: Math.random() < 0.8
+    }));
+  }
+  function drawSky() {
+    sctx.clearRect(0, 0, innerWidth, innerHeight);
+    const g = sctx.createLinearGradient(0, 0, 0, innerHeight);
+    g.addColorStop(0, "#1B2150");
+    g.addColorStop(1, "#232C66");
+    sctx.fillStyle = g;
+    sctx.fillRect(0, 0, innerWidth, innerHeight);
+    for (const st of stars) {
+      if (!st.on) continue;
+      sctx.globalAlpha = st.s === 8 ? 0.9 : 0.55;
+      sctx.fillStyle = st.c;
+      sctx.fillRect(st.x, st.y, st.s === 8 ? 4 : 4, 4);
+      if (st.s === 8) { // little plus-shaped star
+        sctx.fillRect(st.x - 4, st.y, 4, 4);
+        sctx.fillRect(st.x + 4, st.y, 4, 4);
+        sctx.fillRect(st.x, st.y - 4, 4, 4);
+        sctx.fillRect(st.x, st.y + 4, 4, 4);
+      }
+    }
+    sctx.globalAlpha = 1;
+  }
+  function resizeSky() { sizeCanvas(sky, sctx); makeStars(); drawSky(); }
+  resizeSky();
+  if (!reduce) {
+    setInterval(() => {
+      for (let i = 0; i < 6; i++) {
+        const st = stars[Math.floor(Math.random() * stars.length)];
+        if (st) st.on = !st.on;
+      }
+      drawSky();
+    }, 700);
+  }
+
+  /* ---------- Pixel particles ---------- */
+  const fx = document.getElementById("fx");
+  const fctx = fx.getContext("2d");
+  let parts = [];
+  let running = false;
+  function resizeFx() { sizeCanvas(fx, fctx); }
+  resizeFx();
+  addEventListener("resize", () => { resizeFx(); resizeSky(); });
+
+  function spawn(x, y, n, speed, gravity, life, sizes) {
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * Math.PI * 2;
+      const v = speed * (0.4 + Math.random() * 0.8);
+      parts.push({
+        x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - speed * 0.3,
+        g: gravity, life: life * (0.7 + Math.random() * 0.6), max: life,
+        s: sizes[Math.floor(Math.random() * sizes.length)],
+        c: COLORS[Math.floor(Math.random() * COLORS.length)]
+      });
+    }
+    if (!running) { running = true; requestAnimationFrame(tick); }
+  }
+  function tick() {
+    fctx.clearRect(0, 0, innerWidth, innerHeight);
+    parts = parts.filter(p => (p.life -= 1) > 0);
+    for (const p of parts) {
+      p.vy += p.g; p.x += p.vx; p.y += p.vy; p.vx *= 0.98;
+      const t = p.life / p.max;
+      const size = t > 0.5 ? p.s : (t > 0.2 ? p.s - 2 : 2);
+      fctx.globalAlpha = t > 0.2 ? 1 : 0.6;
+      fctx.fillStyle = "#0A0A12";
+      fctx.fillRect(Math.round(p.x / 2) * 2 - 2, Math.round(p.y / 2) * 2 - 2, size + 4, size + 4);
+      fctx.fillStyle = p.c;
+      fctx.fillRect(Math.round(p.x / 2) * 2, Math.round(p.y / 2) * 2, size, size);
+    }
+    fctx.globalAlpha = 1;
+    if (parts.length) requestAnimationFrame(tick); else running = false;
+  }
+
+  /* Click burst on any pointer */
+  if (!reduce) {
+    addEventListener("pointerdown", e => spawn(e.clientX, e.clientY, 12, 4, 0.18, 34, [4, 6]));
+  }
+
+  /* ---------- Juicy cursor ---------- */
+  if (fine) {
+    const SIZE = 50;       // matches Cursor.png (tip sits at the top-left corner)
+    const cur = document.createElement("img");
+    cur.src = "Images/Cursor.png";
+    cur.alt = "";
+    cur.setAttribute("aria-hidden", "true");
+    cur.width = SIZE; cur.height = SIZE;
+    cur.style.cssText = "position:fixed;left:0;top:0;z-index:60;pointer-events:none;image-rendering:pixelated;transform-origin:0 0;opacity:0;will-change:transform;filter:drop-shadow(4px 4px 0 rgba(10,10,18,0.55));";
+    document.body.appendChild(cur);
+    document.documentElement.classList.add("has-cursor");
+
+    let mx = -100, my = -100, lastX = mx, lastY = my, trailDist = 0;
+    let rot = 0, rotV = 0, scale = 1, scaleV = 0;
+    let hot = false, down = false, visible = false;
+
+    addEventListener("pointermove", e => {
+      if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
+      mx = e.clientX; my = e.clientY;
+      if (!visible) { visible = true; cur.style.opacity = "1"; lastX = mx; lastY = my; }
+      hot = !!(e.target.closest && e.target.closest("a, button"));
+      if (!reduce) {
+        trailDist += Math.hypot(mx - lastX, my - lastY);
+        if (trailDist > 18) { trailDist = 0; spawn(mx + 8, my + 8, 1, 0.7, 0.04, 22, [4]); }
+      }
+    });
+    document.addEventListener("pointerleave", () => { visible = false; cur.style.opacity = "0"; });
+    document.addEventListener("mouseleave", () => { visible = false; cur.style.opacity = "0"; });
+    addEventListener("pointerdown", () => { down = true; });
+    addEventListener("pointerup", () => { down = false; });
+
+    (function loop() {
+      const vx = mx - lastX;
+      lastX = mx; lastY = my;
+      if (!reduce) {
+        // lean into the direction of travel, then spring back
+        const targetRot = Math.max(-18, Math.min(18, vx * 1.2));
+        rotV += (targetRot - rot) * 0.2; rotV *= 0.6; rot += rotV;
+        const targetScale = down ? 0.72 : (hot ? 1.3 : 1);
+        scaleV += (targetScale - scale) * 0.3; scaleV *= 0.55; scale += scaleV;
+      } else {
+        rot = 0; scale = hot ? 1.15 : 1;
+      }
+      cur.style.transform = `translate3d(${mx}px, ${my}px, 0) rotate(${rot}deg) scale(${scale})`;
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  /* ---------- Timothy ---------- */
+  const tim = document.getElementById("timothy");
+  const bubble = document.getElementById("bubble");
+  let line = 0;
+  tim.addEventListener("click", e => {
+    line = (line + 1) % LINES.length;
+    bubble.textContent = LINES[line];
+    if (reduce) return;
+    tim.animate([
+      { transform: "scale(1, 1)" },
+      { transform: "scale(1.14, 0.84)" },
+      { transform: "scale(0.9, 1.1)" },
+      { transform: "scale(1.04, 0.97)" },
+      { transform: "scale(1, 1)" }
+    ], { duration: 420, easing: "ease-out" });
+    // floating Z's
+    const r = tim.getBoundingClientRect();
+    for (let i = 0; i < 3; i++) {
+      const z = document.createElement("span");
+      z.className = "zzz";
+      z.textContent = "Z";
+      z.style.left = (r.left + r.width * 0.62 + i * 14 + scrollX) + "px";
+      z.style.top = (r.top + r.height * 0.18 + scrollY) + "px";
+      z.style.fontSize = (16 + i * 8) + "px";
+      z.style.position = "absolute";
+      document.body.appendChild(z);
+      z.animate([
+        { transform: "translate(0, 0)", opacity: 1 },
+        { transform: `translate(${20 + i * 14}px, ${-50 - i * 22}px)`, opacity: 0 }
+      ], { duration: 1100, delay: i * 140, easing: "steps(8)", fill: "forwards" })
+        .onfinish = () => z.remove();
+    }
+  });
+})();
+</script>
 </body>
 </html>
